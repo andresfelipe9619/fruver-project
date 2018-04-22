@@ -16,6 +16,8 @@ And
 
 ```
 npm start
+cd client
+npm run start-react
 ```
 
 ## Built With

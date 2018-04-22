@@ -8,36 +8,56 @@ import {Login} from './components/auth/Login.js';
 // import About from './components/contact/Contact'; import Login from
 // './components/auth/Login'; import Register from './components/auth/Register';
 import {Route} from 'react-router';
+import SmartDataTable from 'react-smart-data-table'
+import {Dimmer, Loader, Image, Segment} from 'semantic-ui-react'
 
 class App extends Component {
 
   componentDidMount() {
     this
       .props
-      .getStrains();
+      .loadPage();
   }
 
   render() {
     console.log(this.props);
     if (this.props.hasErrored) {
       return (
-        <h1>Error</h1>
+        <h1>Error</h1 >
       )
     } else {
-      return (
-        <div>
+      if (this.props.isLoading) {
+        console.log("DRIVE ME CRAZY ");
+        return (
+          <div>
+            <Dimmer active inverted>
+              <Loader size='large'>Loading</Loader>
+            </Dimmer>
+          </div>
+        );
+      } else {
+        console.log(this.props);
+
+        return (
+          <div>
             <Navbar></Navbar>
             <Login></Login>
             <Home></Home>
-            {/* <Route exact path="/about" component={About}/>
+            {/* <SmartDataTable
+              data={this.props.message}
+              name='test-table'
+              className='ui compact selectable table'
+              sortable/>, {/* <Route exact path="/about" component={About}/> 
                     <Route exact path="/login" component={Login}/>
                     <Route exact path="/register" component={Register}/> */}
             {/* </Switch> */}
 
             {/* <StrainList strains={this.props.strains}/> */}
             <Footer></Footer>
-        </div>
-      );
+
+          </div>
+        )
+      }
     }
   }
 }
@@ -46,8 +66,14 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    getStrains: () => {
+    loadPage: () => {
       dispatch(loadHome());
+    },
+    errorMessage: () => {
+      dispatch()
+    },
+    successMessage: () => {
+      dispatch()
     }
   };
 };

@@ -1,6 +1,6 @@
 import {createStore, combineReducers, applyMiddleware, compose} from "redux";
 import {createLogger} from "redux-logger";
-import {homeErrored, homeLoaded, homeLaoding} from "./reducers/home";
+import {homeErrored, homeLoaded, homeLoading} from "./reducers/home";
 import promise from "redux-promise-middleware";
 import {routerMiddleware, routerReducer} from 'react-router-redux';
 import thunk from 'redux-thunk';
@@ -16,5 +16,5 @@ export const history = createHistory();
 // const store = createStore(combineReducers({homeErrored, homeLoaded, homeLaoding, routerReducer}), {}, composedEnhancers);
 const store = createStore(
     combineReducers(
-        {homeErrored, homeLoaded, homeLaoding}), {}, applyMiddleware(createLogger(), thunk, promise()));
+        {homeErrored, homeLoaded, homeLoading}), {}, applyMiddleware(createLogger(), thunk, promise()));
 export default store;

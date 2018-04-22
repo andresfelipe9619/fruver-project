@@ -9,7 +9,7 @@ export function homeErrored(state = false, action) {
     }
 }
 
-export function homeLaoding(state = false, action) {
+export function homeLoading(state = false, action) {
     switch (action.type) {
         case HOME_PAGE_LOADING:
             return action.isLoading;

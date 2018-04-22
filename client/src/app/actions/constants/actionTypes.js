@@ -8,6 +8,9 @@ export const SEARCH_ITEM = 'SEARCH_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const CREATE_ITEM = 'CREATE_ITEM';
 export const FETCH_LIST_ITEMS = 'FETCH_LIST_ITEMS';
+export const SUCCESS = 'ALERT_SUCCESS';
+export const ERROR = 'ALERT_ERROR';
+export const CLEAR = 'ALERT_CLEAR';
 
 
 //State of pages: loading, loaded, errored;

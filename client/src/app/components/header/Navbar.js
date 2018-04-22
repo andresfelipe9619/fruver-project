@@ -26,7 +26,7 @@ export class Navbar extends Component {
                                 style={{
                                 marginRight: '1.5em'
                             }}/>
-                            Home
+                            Inicio
                         </Menu.Item>
                         <Menu.Item as='a'>Contacto</Menu.Item>
                         <Menu.Item as='a'>Realziar Pedido</Menu.Item>

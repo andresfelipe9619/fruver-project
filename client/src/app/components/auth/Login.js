@@ -41,7 +41,7 @@ export class Login extends Component {
                         </Form>
                         <Message>
                             New to us?
-                            <a href='#'>Sign Up</a>
+                            <a href='#'> Sign Up</a>
                         </Message>
                     </Grid.Column>
                 </Grid>

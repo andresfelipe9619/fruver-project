@@ -23,7 +23,7 @@ class App extends Component {
     console.log(this.props);
     if (this.props.hasErrored) {
       return (
-        <h1>Error</h1 >
+        <h1>Error</h1>
       )
     } else {
       if (this.props.isLoading) {

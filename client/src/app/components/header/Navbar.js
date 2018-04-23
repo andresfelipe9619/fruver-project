@@ -28,7 +28,7 @@ export class Navbar extends Component {
                             }}/>
                             Inicio
                         </Menu.Item>
-                        <Menu.Item as='a'>Contácto</Menu.Item>
+                        <Menu.Item as='a'>Contacto</Menu.Item>
                         <Menu.Item as='a'>Realizar Pedido</Menu.Item>
                     </Container>
                 </Menu>

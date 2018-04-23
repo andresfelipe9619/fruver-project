@@ -24,25 +24,28 @@ export class Login extends Component {
                         maxWidth: 450
                     }}>
                         <Header as='h2' color='teal' textAlign='center'>
-                            {' '}Log-in to your account
+                            {' '}Inicia Sesión con tu cuenta
                         </Header>
                         <Form size='large'>
                             <Segment stacked>
-                                <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address'/>
+                                <Form.Input fluid icon='user' iconPosition='left' placeholder='Correo electrónico'/>
                                 <Form.Input
                                     fluid
                                     icon='lock'
                                     iconPosition='left'
-                                    placeholder='Password'
+                                    placeholder='Contraseña'
                                     type='password'/>
 
-                                <Button color='teal' fluid size='large'>Login</Button>
+                                <Button color='teal' fluid size='large'>Iniciar Sesión</Button>
                             </Segment>
                         </Form>
                         <Message>
-                            New to us?
-                            <a href='#'> Sign Up</a>
+                            No tienes cuenta?
+                            <a href='#'> Crear Cuenta</a>
                         </Message>
+						<Message>
+							*Es necesario tener una cuenta con los datos completos de la empresa para poder realizar su pedido.
+						</Message>
                     </Grid.Column>
                 </Grid>
             </div>

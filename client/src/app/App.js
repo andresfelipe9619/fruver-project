@@ -8,7 +8,7 @@ import {Login} from './components/auth/Login.js';
 // import About from './components/contact/Contact'; import Login from
 // './components/auth/Login'; import Register from './components/auth/Register';
 import {Route} from 'react-router';
-import SmartDataTable from 'react-smart-data-table'
+// import SmartDataTable from 'react-smart-data-table'
 import {Dimmer, Loader, Image, Segment} from 'semantic-ui-react'
 
 class App extends Component {

@@ -21,15 +21,15 @@ export class Navbar extends Component {
                     <Container>
                         <Menu.Item as='a' header>
                             <Image
-                                size='tiny'
+                                size= 'small'
                                 src={mBanner}
                                 style={{
                                 marginRight: '1.5em'
                             }}/>
                             Inicio
                         </Menu.Item>
-                        <Menu.Item as='a'>Contacto</Menu.Item>
-                        <Menu.Item as='a'>Realziar Pedido</Menu.Item>
+                        <Menu.Item as='a'>Contácto</Menu.Item>
+                        <Menu.Item as='a'>Realizar Pedido</Menu.Item>
                     </Container>
                 </Menu>
             </div>

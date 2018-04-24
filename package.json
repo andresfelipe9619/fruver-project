@@ -4,13 +4,16 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "cd server && node server",
+        "server": "cd server && node server",
+        "start": "concurrently \"npm run server\" \"npm run client\"",
+        "client": "cd client && npm run start-react",
         "installation": "npm install && cd client && npm install"
     },
     "author": "Andres Suarez && Sebastian Hernandez",
     "license": "MIT",
     "dependencies": {
         "body-parser": "^1.18.2",
+        "concurrently": "^3.5.1",
         "express": "^4.16.3",
         "mongoose": "^5.0.14"
     }

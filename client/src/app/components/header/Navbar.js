@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import {
     Container,
     Divider,
@@ -27,17 +28,17 @@ export class Navbar extends Component {
                                 style={{
                                 marginRight: '1.5em'
                             }}/>
-                            Inicio
+                            <Link to="/">Inicio</Link>
                         </Menu.Item>
-                        <Menu.Item as='a'>Contacto</Menu.Item>
+                        <Menu.Item as='a'> <Link to="/contacto">Contacto</Link></Menu.Item>
                         <Menu.Item as='a'>Realizar Pedido</Menu.Item>
                         <Menu.Item position='right'>
-                            <Button as='a' >Log in</Button>
+                            <Button as='a' > <Link to="/ingreso">Ingreso</Link></Button>
                             <Button
                                 as='a'
                                 style={{
                                 marginLeft: '0.5em'
-                            }}>Sign Up</Button>
+                            }}> <Link to="/">Registrarse</Link></Button>
                         </Menu.Item>
                     </Container>
                 </Menu>

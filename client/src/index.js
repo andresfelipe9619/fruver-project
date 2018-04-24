@@ -7,15 +7,11 @@ import App from "./app/App.js";
 
 ReactDOM.render( 
     <Provider store={store}>
-    {/* <ConnectedRouter history={history}> */}
+    <ConnectedRouter history={history}>
         <div>
             <App/>
         </div>
-    {/* </ConnectedRouter>  */}
+    </ConnectedRouter> 
 </Provider>, window.document.getElementById('root'));
 
 
-// ReactDOM.render(
-//     <Provider store={store}>
-//         <App />
-//     </Provider>, window.document.getElementById('root'));

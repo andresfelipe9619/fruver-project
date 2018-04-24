@@ -8,13 +8,13 @@ import createHistory from 'history/createBrowserHistory';
 // Create a history of your choosing (we're using a browser history in this
 // case)
 export const history = createHistory();
-// const enhancers = [];
-// const middleware = [thunk, routerMiddleware(history), createLogger(), promise()];
+const enhancers = [];
+const middleware = [thunk, routerMiddleware(history), createLogger(), promise()];
 
-// const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
+const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
-// const store = createStore(combineReducers({homeErrored, homeLoaded, homeLaoding, routerReducer}), {}, composedEnhancers);
-const store = createStore(
-    combineReducers(
-        {homeErrored, homeLoaded, homeLoading}), {}, applyMiddleware(createLogger(), thunk, promise()));
+const store = createStore(combineReducers({homeErrored, homeLoaded, homeLoading, routerReducer}), {}, composedEnhancers);
+// const store = createStore(
+//     combineReducers(
+//         {homeErrored, homeLoaded, homeLoading}), {}, applyMiddleware(createLogger(), thunk, promise()));
 export default store;

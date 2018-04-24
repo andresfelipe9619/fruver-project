@@ -5,11 +5,12 @@ import {Home} from './components/home/Home.js';
 import {Navbar} from './components/header/Navbar.js';
 import {Footer} from './components/footer/Footer.js';
 import {Login} from './components/auth/Login.js';
+import {Dashboard} from './components/dashboard/Dashboard.js';
 // import About from './components/contact/Contact'; import Login from
 // './components/auth/Login'; import Register from './components/auth/Register';
 import {Route} from 'react-router';
 // import SmartDataTable from 'react-smart-data-table'
-import {Dimmer, Loader, Image, Segment} from 'semantic-ui-react'
+import {Dimmer, Loader, Image, Segment} from 'semantic-ui-react';
 
 class App extends Component {
 
@@ -31,7 +32,7 @@ class App extends Component {
         return (
           <div>
             <Dimmer active inverted>
-              <Loader size='large'>Loading</Loader>
+              <Loader size='large'>Cargando...</Loader>
             </Dimmer>
           </div>
         );
@@ -41,18 +42,10 @@ class App extends Component {
         return (
           <div>
             <Navbar></Navbar>
-            <Login></Login>
-            <Home></Home>
-            {/* <SmartDataTable
-              data={this.props.message}
-              name='test-table'
-              className='ui compact selectable table'
-              sortable/>, {/* <Route exact path="/about" component={About}/> 
-                    <Route exact path="/login" component={Login}/>
-                    <Route exact path="/register" component={Register}/> */}
-            {/* </Switch> */}
-
-            {/* <StrainList strains={this.props.strains}/> */}
+            <Route exact path="/" component={Home}/>
+            <Route path="/ingreso" component={Login}/>
+            {/* <Route path="/contacto" component={Contact}/> */}
+            <Route path="/dashboard" component={Dashboard}/>
             <Footer></Footer>
 
           </div>

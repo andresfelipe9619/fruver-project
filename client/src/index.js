@@ -13,5 +13,3 @@ ReactDOM.render(
         </div>
     </BrowserRouter> 
 </Provider>, window.document.getElementById('root'));
-
-

@@ -11,7 +11,7 @@ export const history = createHistory();
 
 
 const enhancers = [];
-// , 
+
 const middleware = [thunk, routerMiddleware(history), createLogger(), promise()];
 
 const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);

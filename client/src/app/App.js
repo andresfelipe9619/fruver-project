@@ -6,6 +6,8 @@ import {Navbar} from './components/header/Navbar.js';
 import {Footer} from './components/footer/Footer.js';
 import {Login} from './components/auth/Login.js';
 import {Dashboard} from './components/dashboard/Dashboard.js';
+import {Contact} from './components/contact/Contact.js'; 
+
 // import About from './components/contact/Contact'; import Login from
 // './components/auth/Login'; import Register from './components/auth/Register';
 import {Route, withRouter, Switch} from 'react-router-dom';
@@ -44,6 +46,7 @@ class App extends Component {
             <Navbar></Navbar>
             <Switch>
                     <Route exact path="/" component={Home}/>
+                    <Route path="/contacto" component={Contact}/>
                     <Route exact path="/dashboard" component={Dashboard}/>
                     <Route exact path="/ingreso" component={Login}/>
                     {/* <Route exact path="/register" component={Register}/> */}

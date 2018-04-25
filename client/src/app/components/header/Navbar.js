@@ -1,47 +1,58 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {
-    Container,
-    Divider,
-    Dropdown,
-    Grid,
-    Header,
-    Image,
-    List,
-    Menu,
-    Segment,
-    Button
-} from 'semantic-ui-react'
+import {Container, Image, Menu, Button, Segment} from 'semantic-ui-react'
 
 import mBanner from './banner.png';
 
 export class Navbar extends Component {
+    state = {}
+
+    handleItemClick = (e, {name}) => this.setState({activeItem: name})
     render() {
+        const { activeItem } = this.state;
         return (
             <div>
-                <Menu fixed='top' inverted>
+                <Segment inverted>
+                <Menu fixed='top' inverted >
                     <Container>
-                        <Menu.Item as='a' header>
+                        <Menu.Item
+                            name='inicio'
+                            active={activeItem === 'inicio'}
+                            onClick={this.handleItemClick}
+                            as={Link}
+                            to="/"
+                            header>
                             <Image
                                 size='small'
                                 src={mBanner}
                                 style={{
                                 marginRight: '1.5em'
                             }}/>
-                            <Link to="/">Inicio</Link>
+                            Inicio
                         </Menu.Item>
-                        <Menu.Item as='a'> <Link to="/contacto">Contacto</Link></Menu.Item>
-                        <Menu.Item as='a'>Realizar Pedido</Menu.Item>
+                        <Menu.Item
+                            name='contacto'
+                            active={activeItem === 'contacto'}
+                            onClick={this.handleItemClick}
+                            as={Link}
+                            to="/contacto">Contacto</Menu.Item>
+                        <Menu.Item
+                            name='pedido'
+                            active={activeItem === 'pedido'}
+                            onClick={this.handleItemClick}
+                            to="/pedido" as={Link} >Realizar Pedido</Menu.Item>
                         <Menu.Item position='right'>
-                            <Button as='a' > <Link to="/ingreso">Ingreso</Link></Button>
+                            <Button as={Link} to="/ingreso">Ingreso</Button>
                             <Button
-                                as='a'
+                                as={Link}
+                                to="/registro"
                                 style={{
                                 marginLeft: '0.5em'
-                            }}> <Link to="/">Registrarse</Link></Button>
+                            }}>Registrarse</Button>
                         </Menu.Item>
                     </Container>
                 </Menu>
+                </Segment>
             </div>
         );
     }

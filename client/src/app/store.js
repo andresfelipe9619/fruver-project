@@ -8,7 +8,10 @@ import createHistory from 'history/createBrowserHistory';
 // Create a history of your choosing (we're using a browser history in this
 // case)
 export const history = createHistory();
+
+
 const enhancers = [];
+// , 
 const middleware = [thunk, routerMiddleware(history), createLogger(), promise()];
 
 const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);

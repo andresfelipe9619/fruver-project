@@ -8,9 +8,9 @@ import {Login} from './components/auth/Login.js';
 import {Dashboard} from './components/dashboard/Dashboard.js';
 // import About from './components/contact/Contact'; import Login from
 // './components/auth/Login'; import Register from './components/auth/Register';
-import {Route} from 'react-router-dom';
+import {Route, withRouter, Switch} from 'react-router-dom';
 // import SmartDataTable from 'react-smart-data-table'
-import {Dimmer, Loader, Image, Segment} from 'semantic-ui-react';
+import {Dimmer, Loader} from 'semantic-ui-react';
 
 class App extends Component {
 
@@ -42,10 +42,12 @@ class App extends Component {
         return (
           <div>
             <Navbar></Navbar>
-            <Route exact path="/" component={Home}/>
-            <Route path="/ingreso" component={Login}/>
-            {/* <Route path="/contacto" component={Contact}/> */}
-            <Route path="/dashboard" component={Dashboard}/>
+            <Switch>
+                    <Route exact path="/" component={Home}/>
+                    <Route exact path="/dashboard" component={Dashboard}/>
+                    <Route exact path="/ingreso" component={Login}/>
+                    {/* <Route exact path="/register" component={Register}/> */}
+                  </Switch>
             <Footer></Footer>
 
           </div>
@@ -70,4 +72,4 @@ const mapDispatchToProps = (dispatch) => {
     }
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

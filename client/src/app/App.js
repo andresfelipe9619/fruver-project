@@ -6,9 +6,7 @@ import {Navbar} from './components/header/Navbar.js';
 import {Footer} from './components/footer/Footer.js';
 import {Login} from './components/auth/Login.js';
 import {Dashboard} from './components/dashboard/Dashboard.js';
-import {Map} from './components/map/Map.js';
-import {Contact} from './components/contact/Contact.js'; 
-
+// import About from './components/contact/Contact'; import Login from
 // './components/auth/Login'; import Register from './components/auth/Register';
 import {Route} from 'react-router-dom';
 // import SmartDataTable from 'react-smart-data-table'
@@ -46,7 +44,7 @@ class App extends Component {
             <Navbar></Navbar>
             <Route exact path="/" component={Home}/>
             <Route path="/ingreso" component={Login}/>
-            <Route path="/contacto" component={Contact}/>
+            {/* <Route path="/contacto" component={Contact}/> */}
             <Route path="/dashboard" component={Dashboard}/>
             <Footer></Footer>
 

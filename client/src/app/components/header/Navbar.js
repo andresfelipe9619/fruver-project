@@ -28,7 +28,7 @@ export class Navbar extends Component {
                                 style={{
                                 marginRight: '1.5em'
                             }}/>
-                            <Link to='/'>Inicio</Link>
+                            <Link to="/">Inicio</Link>
                         </Menu.Item>
                         <Menu.Item as='a'> <Link to="/contacto">Contacto</Link></Menu.Item>
                         <Menu.Item as='a'>Realizar Pedido</Menu.Item>

@@ -5,14 +5,15 @@ import {Home} from './components/home/Home.js';
 import {Navbar} from './components/header/Navbar.js';
 import {Footer} from './components/footer/Footer.js';
 import {Login} from './components/auth/Login.js';
+import {Register} from './components/auth/Register.js';
 import {Dashboard} from './components/dashboard/Dashboard.js';
-import {Contact} from './components/contact/Contact.js'; 
+import {Contact} from './components/contact/Contact.js';
 
 // import About from './components/contact/Contact'; import Login from
 // './components/auth/Login'; import Register from './components/auth/Register';
 import {Route, withRouter, Switch} from 'react-router-dom';
 // import SmartDataTable from 'react-smart-data-table'
-import {Dimmer, Loader} from 'semantic-ui-react';
+import {Dimmer, Loader,  Container} from 'semantic-ui-react';
 
 class App extends Component {
 
@@ -44,13 +45,15 @@ class App extends Component {
         return (
           <div>
             <Navbar></Navbar>
-            <Switch>
-                    <Route exact path="/" component={Home}/>
-                    <Route path="/contacto" component={Contact}/>
-                    <Route exact path="/dashboard" component={Dashboard}/>
-                    <Route exact path="/ingreso" component={Login}/>
-                    {/* <Route exact path="/register" component={Register}/> */}
-                  </Switch>
+            <Container id="main">
+              <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route path="/contacto" component={Contact}/>
+                <Route exact path="/dashboard" component={Dashboard}/>
+                <Route exact path="/registro" component={Register}/>
+                <Route exact path="/ingreso" component={Login}/> {/* <Route exact path="/register" component={Register}/> */}
+              </Switch>
+            </Container>
             <Footer></Footer>
 
           </div>

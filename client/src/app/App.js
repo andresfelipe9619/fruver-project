@@ -5,11 +5,14 @@ import {Home} from './components/home/Home.js';
 import {Navbar} from './components/header/Navbar.js';
 import {Footer} from './components/footer/Footer.js';
 import {Login} from './components/auth/Login.js';
+import {Dashboard} from './components/dashboard/Dashboard.js';
+import {Contact} from './components/contact/Contact.js'; 
+
 // import About from './components/contact/Contact'; import Login from
 // './components/auth/Login'; import Register from './components/auth/Register';
-import {Route} from 'react-router';
+import {Route, withRouter, Switch} from 'react-router-dom';
 // import SmartDataTable from 'react-smart-data-table'
-import {Dimmer, Loader, Image, Segment} from 'semantic-ui-react'
+import {Dimmer, Loader} from 'semantic-ui-react';
 
 class App extends Component {
 
@@ -23,7 +26,7 @@ class App extends Component {
     console.log(this.props);
     if (this.props.hasErrored) {
       return (
-        <h1>Error</h1 >
+        <h1>Error</h1>
       )
     } else {
       if (this.props.isLoading) {
@@ -31,7 +34,7 @@ class App extends Component {
         return (
           <div>
             <Dimmer active inverted>
-              <Loader size='large'>Loading</Loader>
+              <Loader size='large'>Cargando...</Loader>
             </Dimmer>
           </div>
         );
@@ -41,18 +44,13 @@ class App extends Component {
         return (
           <div>
             <Navbar></Navbar>
-            <Login></Login>
-            <Home></Home>
-            {/* <SmartDataTable
-              data={this.props.message}
-              name='test-table'
-              className='ui compact selectable table'
-              sortable/>, {/* <Route exact path="/about" component={About}/> 
-                    <Route exact path="/login" component={Login}/>
-                    <Route exact path="/register" component={Register}/> */}
-            {/* </Switch> */}
-
-            {/* <StrainList strains={this.props.strains}/> */}
+            <Switch>
+                    <Route exact path="/" component={Home}/>
+                    <Route exact path="/contacto" component={Contact}/>
+                    <Route exact path="/dashboard" component={Dashboard}/>
+                    <Route exact path="/ingreso" component={Login}/>
+                    {/* <Route exact path="/register" component={Register}/> */}
+                  </Switch>
             <Footer></Footer>
 
           </div>
@@ -77,4 +75,4 @@ const mapDispatchToProps = (dispatch) => {
     }
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

@@ -8,6 +8,7 @@
         "history": "^4.7.2",
         "react": "^16.3.2",
         "react-dom": "^16.3.2",
+        "react-form": "^3.5.3",
         "react-google-maps": "^9.4.5",
         "react-redux": "^5.0.7",
         "react-router": "^4.2.0",

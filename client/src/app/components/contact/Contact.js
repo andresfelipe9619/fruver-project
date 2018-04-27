@@ -1,6 +1,7 @@
 // JavaScript Document
 
 import React, { Component } from "react";
+import { Form, Text } from "react-form";
 import { MapWithAMarker } from "./../map/Map.js";
 
 import {
@@ -34,14 +35,14 @@ export class Contact extends Component {
               ciudad de Cali
             </aside>
             <h3 textalign="left">MAPA</h3>
-            <p>
+            <section>
               <MapWithAMarker
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `400px` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
               />
-            </p>
+            </section>
           </section>
           <section>
             <article>
@@ -52,63 +53,43 @@ export class Contact extends Component {
               <aside>fruveralejandro@hotmail.com</aside>
             </article>
           </section>
-          <section>
-            <style>marginTop: 35px</style>
-            <h1 textalign="left">Escribenos</h1>
-            <article>
-              <div role="form" lang="en-US" dir="ltr">
-                <p>
+        </Container>
+        <Container>
+          <Grid style={{ marginTop: "2em" }}>
+            <Grid.Row>
+              <Grid.Column>
+                <Header textalign="center">ESCRIBENOS</Header>
+                <form>
                   <label>
-                    {" "}
-                    Nombre*<br />
-                    <span>
-                      <input
-                        type="text"
-                        name="your-name"
-                        size="40"
-                        aria-required="true"
-                      />
-                    </span>{" "}
+                    Nombre:
+                    <br />
+                    <input type="text" name="nombre" />
+                    <br />
                   </label>
-                </p>
-                <p>
                   <label>
-                    {" "}
-                    Email*<br />
-                    <span>
-                      <input
-                        type="email"
-                        name="your-email"
-                        size="40"
-                        aria-required="true"
-                      />
-                    </span>{" "}
+                    E-Mail:
+                    <br />
+                    <input type="text" name="email" />
+                    <br />
                   </label>
-                </p>
-                <p>
                   <label>
-                    {" "}
-                    Asunto<br />
-                    <span>
-                      <input type="text" name="your-subject" size="40" />
-                    </span>{" "}
+                    Asunto:
+                    <br />
+                    <input type="text" name="asunto" />
+                    <br />
                   </label>
-                </p>
-                <p>
                   <label>
-                    {" "}
-                    Mensaje<br />
-                    <span>
-                      <textarea name="your-message" cols="40" rows="10" />
-                    </span>{" "}
+                    Mensaje:
+                    <br />
+                    <textarea id="form-text-area" name="textarea" />
                   </label>
-                </p>
+                </form>
                 <p>
                   <Button>Enviar</Button>
                 </p>
-              </div>
-            </article>
-          </section>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Container>
       </div>
     );

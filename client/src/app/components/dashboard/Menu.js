@@ -13,10 +13,7 @@ export class MenuDashboard extends Component {
             <div>
                 <Menu
                     size='large'
-                    vertical
-                    style={{
-                    marginLeft: '2em'
-                }}>
+                    vertical>
                     <Menu.Item
                         name='dashboard'
                         style={{

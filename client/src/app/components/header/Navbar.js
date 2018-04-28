@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Container, Image, Menu, Button, Segment} from 'semantic-ui-react'
-
 import mBanner from './banner.png';
 
 export class Navbar extends Component {
@@ -12,7 +11,9 @@ export class Navbar extends Component {
         const { activeItem } = this.state;
         return (
             <div>
-                <Segment inverted>
+                <Segment 
+                inverted
+                style={{marginBottom: '50px'}}>
                 <Menu fixed='top' inverted >
                     <Container>
                         <Menu.Item
@@ -41,6 +42,12 @@ export class Navbar extends Component {
                             active={activeItem === 'pedido'}
                             onClick={this.handleItemClick}
                             to="/pedido" as={Link} >Realizar Pedido</Menu.Item>
+                            
+                        <Menu.Item
+                            name='dashboard'
+                            active={activeItem === 'dashboard'}
+                            onClick={this.handleItemClick}
+                            to="/dashboard" as={Link} >Dashboard</Menu.Item>
                         <Menu.Item position='right'>
                             <Button as={Link} to="/ingreso">Ingreso</Button>
                             <Button

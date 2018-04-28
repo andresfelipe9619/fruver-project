@@ -8,7 +8,7 @@ import {Login} from './components/auth/Login.js';
 import {Register} from './components/auth/Register.js';
 import {Dashboard} from './components/dashboard/Dashboard.js';
 import {Contact} from './components/contact/Contact.js';
-
+import './App.css'
 // import About from './components/contact/Contact'; import Login from
 // './components/auth/Login'; import Register from './components/auth/Register';
 import {Route, withRouter, Switch} from 'react-router-dom';
@@ -45,7 +45,7 @@ class App extends Component {
         return (
           <div>
             <Navbar></Navbar>
-            <Container id="main">
+            <Container className="main">
               <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route path="/contacto" component={Contact}/>

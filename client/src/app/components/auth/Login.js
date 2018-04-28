@@ -15,7 +15,6 @@ export class Login extends Component {
                     textAlign='center'
                     style={{
                     height: '100%',
-                    marginTop: '7em'
                 }}
                     verticalAlign='middle'>
                     <Grid.Column

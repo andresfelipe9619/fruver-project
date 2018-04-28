@@ -6,7 +6,7 @@ export const Register = () => (
         textAlign='center'
         style={{
         height: '100%',
-        marginTop: '7em'
+        
     }}
         verticalAlign='middle'>
         <Grid.Column style={{
@@ -30,3 +30,4 @@ export const Register = () => (
         </Grid.Column>
 
     </Grid>
+)

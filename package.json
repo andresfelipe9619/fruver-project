@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "server": "cd server && node server",
+        "server": "cd server && nodemon server",
         "start": "concurrently \"npm run server\" \"npm run client\"",
         "client": "cd client && npm run start-react",
         "installation": "npm install && cd client && npm install"
@@ -16,7 +16,9 @@
         "bootstrap": "^4.1.0",
         "concurrently": "^3.5.1",
         "express": "^4.16.3",
+        "fetch": "^1.1.0",
         "mongoose": "^5.0.14",
+        "nodemon": "^1.17.3",
         "react": "^16.3.2",
         "react-dom": "^16.3.2",
         "reactstrap": "^5.0.0-beta.3"

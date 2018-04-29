@@ -1,6 +1,6 @@
 import {HOME_PAGE_LOADED, HOME_PAGE_ERRORED, HOME_PAGE_LOADING} from '../actions/constants/ActionTypes';
 
-export function homeErrored(state = false, action) {
+function homeErrored(state = false, action) {
     switch (action.type) {
         case HOME_PAGE_ERRORED:
             return action.hasErrored;
@@ -9,7 +9,7 @@ export function homeErrored(state = false, action) {
     }
 }
 
-export function homeLoading(state = false, action) {
+function homeLoading(state = false, action) {
     switch (action.type) {
         case HOME_PAGE_LOADING:
             return action.isLoading;
@@ -18,11 +18,19 @@ export function homeLoading(state = false, action) {
     }
 }
 
-export function homeLoaded(state = "you're close" , action) {
+function homeLoaded(state = "you're close" , action) {
     switch (action.type) {
         case HOME_PAGE_LOADED:
             return action.message;
         default:
             return state;
+    }
+}
+
+export function homeReducer(state = {}, action){
+    return {
+        homeErrored: homeErrored(state.homeErrored, action),
+        homeLoading: homeLoading(state.homeLoading, action),
+        homeLoaded: homeLoaded(state.homeLoaded, action)
     }
 }

@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "server": "cd server && node server",
+        "server": "cd server && nodemon server",
         "start": "concurrently \"npm run server\" \"npm run client\"",
         "client": "cd client && npm run start-react",
         "installation": "npm install && cd client && npm install"
@@ -12,11 +12,18 @@
     "author": "Andres Suarez && Sebastian Hernandez",
     "license": "MIT",
     "dependencies": {
+        "assert": "^1.4.1",
         "body-parser": "^1.18.2",
         "bootstrap": "^4.1.0",
         "concurrently": "^3.5.1",
         "express": "^4.16.3",
+<<<<<<< HEAD
+        "mongodb": "^3.0.7",
+=======
+        "fetch": "^1.1.0",
+>>>>>>> e1d3ca89ce69feeeeafbc222eab765fd25ff0459
         "mongoose": "^5.0.14",
+        "nodemon": "^1.17.3",
         "react": "^16.3.2",
         "react-dom": "^16.3.2",
         "reactstrap": "^5.0.0-beta.3"

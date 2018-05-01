@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
-import {Table, Checkbox, Button, Icon} from 'semantic-ui-react';
+import React, { Component } from 'react';
 
-export class UsersTable extends Component {
+export class DevolutionsTable extends Component {
     render() {
         return (
             <div>
-                <Table celled compact definition>
+                               <Table celled compact definition>
                     <Table.Header fullWidth>
                         <Table.Row>
                             <Table.HeaderCell>Name</Table.HeaderCell>
@@ -54,3 +53,4 @@ export class UsersTable extends Component {
         );
     }
 }
+

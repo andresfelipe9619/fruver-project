@@ -42,6 +42,12 @@ export class Navbar extends Component {
                             active={activeItem === 'pedido'}
                             onClick={this.handleItemClick}
                             to="/pedido" as={Link} >Realizar Pedido</Menu.Item>
+                            
+                        <Menu.Item
+                            name='dashboard'
+                            active={activeItem === 'dashboard'}
+                            onClick={this.handleItemClick}
+                            to="/dashboard" as={Link} >Dashboard</Menu.Item>
                         <Menu.Item position='right'>
                             <Button as={Link} to="/ingreso">Ingreso</Button>
                             <Button

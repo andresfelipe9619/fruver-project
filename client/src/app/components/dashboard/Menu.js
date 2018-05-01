@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Label, Menu, Header, Input, Icon} from 'semantic-ui-react'
+import {Route, Link} from 'react-router-dom';
 
 export class MenuDashboard extends Component {
     state = {};
@@ -12,10 +13,7 @@ export class MenuDashboard extends Component {
             <div>
                 <Menu
                     size='large'
-                    vertical
-                    style={{
-                    marginLeft: '2em'
-                }}>
+                    vertical>
                     <Menu.Item
                         name='dashboard'
                         style={{
@@ -34,7 +32,8 @@ export class MenuDashboard extends Component {
                     <Menu.Item
                         name='usuarios'
                         active={activeItem === 'usuarios'}
-                        onClick={this.handleItemClick}>
+                        onClick={this.handleItemClick}
+                        to="/dashboard/usuarios" as={Link}>
                         <Header as='h4'>
                             <Icon name='user' size='mini'/>
                             <Header.Content>
@@ -47,7 +46,8 @@ export class MenuDashboard extends Component {
                     <Menu.Item
                         name='productos'
                         active={activeItem === 'productos'}
-                        onClick={this.handleItemClick}>
+                        onClick={this.handleItemClick}
+                        to="/dashboard/productos" as={Link}>
                         <Header as='h4'>
                             <Icon name='cubes' size='mini'/>
                             <Header.Content>
@@ -60,7 +60,8 @@ export class MenuDashboard extends Component {
                     <Menu.Item
                         name='pedidos'
                         active={activeItem === 'pedidos'}
-                        onClick={this.handleItemClick}>
+                        onClick={this.handleItemClick}
+                        to="/dashboard/pedidos" as={Link}>
                         <Header as='h4'>
                             <Icon name='shopping bag' size='mini'/>
                             <Header.Content>
@@ -74,7 +75,8 @@ export class MenuDashboard extends Component {
                     <Menu.Item
                         name='facturas'
                         active={activeItem === 'facturas'}
-                        onClick={this.handleItemClick}>
+                        onClick={this.handleItemClick}
+                        to="/dashboard/facturas" as={Link}>
 
                         <Header as='h4'>
                             <Icon name='file text outline' size='mini'/>

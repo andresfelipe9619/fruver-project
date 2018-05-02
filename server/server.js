@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
+const mongodb = require('mongodb');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 const morgan = require("morgan");
@@ -96,4 +97,27 @@ app.listen(PORT, (err) => {
     err
         ? console.log(`cannot coonect to the port ${PORT} with error ${err}`)
         : console.log(`connected to port ${PORT} succesfully`)
+});
+
+
+//Connection to MongoDB
+
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+
+// Connection URL
+const url = 'mongodb://localhost:27017';
+
+// Database Name
+const dbName = 'fruver';
+
+// Use connect method to connect to the server
+MongoClient.connect(url, function(err, client) {
+  assert.equal(null, err);
+  console.log("Successfully connected to server");
+
+  const db = client.db(dbName);
+  var coll = db.collection('producto');
+
+  client.close();
 });

@@ -17,7 +17,7 @@ export function loadHome() {
     return (dispatch) => {
         dispatch(homePageLoading(true));
 
-        fetch('/productos').then((response) => {
+        fetch('https://api.otreeba.com/v1/strains').then((response) => {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
@@ -28,4 +28,21 @@ export function loadHome() {
         }).then((response) => response.json()).then((items) => dispatch(homePageLoaded(items))).catch(() => dispatch(homePageErrored(true)));
     };
 }
+
+/*
+export function loadHome() {
+    return (dispatch) => {
+        dispatch(homePageLoading(true));
+
+        fetch('/').then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+
+            dispatch(homePageLoading(false));
+
+            return response;
+        }).then((response) => response.json()).then((items) => dispatch(homePageLoaded(items))).catch(() => dispatch(homePageErrored(true)));
+    };
+}*/
     

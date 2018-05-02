@@ -9,7 +9,7 @@ var fetchUrl = require("fetch").fetchUrl;
 // const users = require('./routes/users'); const User =
 // require('./model/user');
 
-const PORT = 5000;  
+const PORT = 27017;  
 
 const PRODUCTS = {
     data: [
@@ -64,7 +64,7 @@ app.get('/home', (req, res) => {
     res.json({message: 'Responding from express'});
 });
 
-app.get('/productos', (req, res) => {
+app.get('/producto', (req, res) => {
 
     // fetchUrl('https://api.otreeba.com/v1/strains',(error, meta, body) => {
     //     if (error) {
@@ -92,23 +92,17 @@ app.listen(PORT, (err) => {
 
 
 //Connection to MongoDB
-
+/*
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 
 // Connection URL
-const url = 'mongodb://localhost:27017';
-
-// Database Name
-const dbName = 'fruver';
+const url = 'mongodb://localhost:27017/fruver';
 
 // Use connect method to connect to the server
 MongoClient.connect(url, function(err, client) {
   assert.equal(null, err);
   console.log("Successfully connected to server");
 
-  const db = client.db(dbName);
-  var coll = db.collection('producto');
-
   client.close();
-});
+});*/

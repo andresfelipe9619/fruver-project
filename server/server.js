@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
 const config = require('./config/database');
+const morgan = require("morgan");
+
 var fetchUrl = require("fetch").fetchUrl;
 // const users = require('./routes/users'); const User =
 // require('./model/user');
@@ -48,14 +50,18 @@ const USERS = [
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Body Parser Middleware
+app.use(morgan("dev"));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const authUser = (user)=>{
-    for(USER of USERS){
-        if(user.username == USER.username && user.password == USER.password){
-            return true;
-        }else return false; 
+function authUser(user){
+    console.log(typeof user);
+    for(USER in USERS){
+        if(user.username == USERS[USER].username && user.password == USERS[USER].password){
+            return USERS[USER];
+        }
     }
+    return false;
 }
 
 
@@ -76,10 +82,13 @@ app.get('/productos', (req, res) => {
 });
 
 app.post('/authenticate', (req, res)=>{
-    if(authUser(req.body)){
-        res.send('Nice job')
+    const result =  authUser(req.body);
+    console.log('AUTH: ', result)
+    if(result){
+        
+        res.status(200).json(result);
     }else {
-        res.send('Username or password wrong')
+        res.status(401).json({msg: "User doesnt exist"});
     }
 })
 

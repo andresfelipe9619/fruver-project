@@ -3,6 +3,7 @@ import {Table, Checkbox, Button, Icon} from 'semantic-ui-react';
 
 export class UsersTable extends Component {
     render() {
+        console.log('TABLE PROPS: ', this.props)
         return (
             <div>
                 <Table celled compact definition>

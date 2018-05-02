@@ -8,7 +8,6 @@ import {
     LOGOUT
 } from './constants/ActionTypes';
 
-import {userService} from '../API';
 
 function loginRequest(user) {
     return {type: LOGIN_REQUEST, user};
@@ -24,16 +23,22 @@ function loginFailure(error) {
 }
 
 export function login(user) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+    };
+
     return dispatch => {
         dispatch(loginRequest(user));
-        userService
-            .login(user)
-            .then(user => {
-                dispatch(loginSuccess(user));
-                // history.push('/');
-            }, error => {
-                dispatch(loginFailure(error));
-                // dispatch(alertActions.error(error));
-            });
+        
+        fetch('/authenticate', requestOptions)
+            .then(response => {
+                if (!response.ok) { 
+                    return Promise.reject(response.statusText);
+                }
+                dispatch(loginRequest({}));
+                return response;  
+            }).then((response) => response.json()).then((user) => dispatch(loginSuccess(user))).catch((err) => dispatch(loginFailure(err)));
     };
 }

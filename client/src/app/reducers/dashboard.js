@@ -27,7 +27,7 @@ function dashboardLoaded(state = "Not loaded" , action) {
     }
 }
 
-export function dashboardReducer(state = {}, action){
+export default function dashboardReducer(state = {}, action){
     return {
         dashboardErrored: dashboardErrored(state.dashboardErrored, action),
         dashboardLoading: dashboardLoading(state.dashboardLoading, action),

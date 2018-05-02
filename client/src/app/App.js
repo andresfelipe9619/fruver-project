@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {loadHome} from './actions/homeActions';
 import Home from './components/home/Home.js';
-import {Navbar} from './components/header/Navbar.js';
-import {Footer} from './components/footer/Footer.js';
-import {Login} from './components/auth/Login.js';
-import {Register} from './components/auth/Register.js';
+import Login from './components/auth/Login.js';
 import Dashboard from './components/dashboard/Dashboard.js';
+import Navbar from './components/header/Navbar.js';
+import {Footer} from './components/footer/Footer.js';
+import {Register} from './components/auth/Register.js';
 import {Contact} from './components/contact/Contact.js';
 import {Route, withRouter, Switch} from 'react-router-dom';
 import {Container} from 'semantic-ui-react';
@@ -21,7 +20,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/contacto" component={Contact}/>
-            <Route exact path="/dashboard" component={Dashboard}/>
+            <Route path="/dashboard" component={Dashboard}/>
             <Route exact path="/registro" component={Register}/>
             <Route exact path="/ingreso" component={Login}/>
           </Switch>

@@ -11,7 +11,6 @@ import {
 export class Contact extends Component {
   render() {
     return (
-      <div>
         <Container>
           <section>
             <div>
@@ -100,7 +99,6 @@ export class Contact extends Component {
             </article>
           </section>
         </Container>
-      </div>
     );
   }
 }

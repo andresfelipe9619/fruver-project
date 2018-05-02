@@ -1,12 +1,19 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {Container, Image, Menu, Button, Segment} from 'semantic-ui-react'
 import mBanner from './banner.png';
 
-export class Navbar extends Component {
-    state = {}
+class Navbar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeItem: '',
+        };
 
+      }
     handleItemClick = (e, {name}) => this.setState({activeItem: name})
+
     render() {
         const { activeItem } = this.state;
         return (
@@ -42,12 +49,12 @@ export class Navbar extends Component {
                             active={activeItem === 'pedido'}
                             onClick={this.handleItemClick}
                             to="/pedido" as={Link} >Realizar Pedido</Menu.Item>
-                            
-                        <Menu.Item
+                            {this.props.user.admin?
+                            <Menu.Item
                             name='dashboard'
                             active={activeItem === 'dashboard'}
                             onClick={this.handleItemClick}
-                            to="/dashboard" as={Link} >Dashboard</Menu.Item>
+                            to="/dashboard" as={Link} >Dashboard</Menu.Item> :''}
                         <Menu.Item position='right'>
                             <Button as={Link} to="/ingreso">Ingreso</Button>
                             <Button
@@ -64,3 +71,17 @@ export class Navbar extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {user: state.authReducer.loginSuccess};
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        requestLogin: (user) => {
+            dispatch();
+        }
+    }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

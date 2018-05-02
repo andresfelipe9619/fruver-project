@@ -35,7 +35,7 @@ function loginSuccess(state = {} , action) {
     }
 }
 
-export function authenticationReducer(state = {}, action){
+export default function authenticationReducer(state = {}, action){
     return {
         loginFailure: loginFailure(state.loginFailure, action),
         loginRequest: loginRequest(state.loginRequest, action),

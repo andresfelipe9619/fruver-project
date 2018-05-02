@@ -10,40 +10,37 @@ import {
 } from 'semantic-ui-react';
 import {login} from '../../actions/authActions';
 
-//TODO: Fix handleChange and handleSubmit
-export class Login extends Component {
+class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+        };
+    
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
+    
 
-    state = {
-        username: '',
-        password: '',
-        admin: false,
-        submitted: false
-    };
 
-    handleChange = (e) => {
-        const {name, value} = e.target;
-        this.setState({[name]: value});
-        console.log('CHANGE: ', value);
+    handleChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
     }
 
-    handleSubmit = (e) => {
+    handleSubmit(e) {
         e.preventDefault();
-        this.setState({submitted: true});
         const {username, password} = this.state;
         const user = {
             username,
             password
         };
 
-        console.log('MY PROPS ', this.props)
-        this
-            .props
-            .requestLogin(user);
+        this.props.requestLogin(user);
     }
     render() {
         return (
             <div >
-                {console.log('PROPS', this.props)}
                 <Grid
                     textAlign='center'
                     style={{
@@ -57,21 +54,29 @@ export class Login extends Component {
                         <Header as='h2' color='teal' textAlign='center'>
                             Inicia Sesión con tu cuenta
                         </Header>
-                        <Form size='large' onSubmit={this.handleSubmitS}>
+                        <Form size='large' onSubmit={this.handleSubmit}>
                             <Segment stacked>
                                 <Form.Input
+                                    required
                                     fluid
                                     icon='user'
                                     iconPosition='left'
-                                    placeholder='Nombre de usuario'/>
+                                    name="username"
+                                    placeholder='Nombre de usuario'
+                                    onChange={this.handleChange}
+                                    value={this.state.username}/>
                                 <Form.Input
+                                    required
                                     fluid
                                     icon='lock'
+                                    name="password"
                                     iconPosition='left'
                                     placeholder='Contraseña'
-                                    type='password'/>
+                                    type='password'
+                                    onChange={this.handleChange}
+                                    value={this.state.password}/>
 
-                                <Button color='teal' fluid size='large'>Iniciar Sesión</Button>
+                                <Button color='teal' type="submit" fluid size='large'>Iniciar Sesión</Button>
                             </Segment>
                         </Form>
                         <Message>
@@ -89,9 +94,8 @@ export class Login extends Component {
         );
     }
 }
-//TODO: Fix connection with store, cause mapped props isnt appearing
 const mapStateToProps = (state) => {
-    return {hasRequested: state.loginReducer.loginRequest, hasSuccessed: state.loginReducer.loginSuccess, hasErrored: state.loginReducer.loginFailure};
+    return {hasRequested: state.authReducer.loginRequest, hasSuccessed: state.authReducer.loginSuccess, hasErrored: state.authReducer.loginFailure};
 };
 const mapDispatchToProps = (dispatch) => {
     return {

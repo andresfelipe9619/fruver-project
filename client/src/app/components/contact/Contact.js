@@ -1,7 +1,6 @@
 // JavaScript Document
 
 import React, { Component } from "react";
-import { Form, Text } from "react-form";
 import { MapWithAMarker } from "./../map/Map.js";
 
 import {

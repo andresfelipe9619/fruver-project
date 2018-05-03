@@ -6,6 +6,8 @@ import { MapWithAMarker } from "./../map/Map.js";
 
 import {
   Container,
+  Grid,
+  Header,
   Button
 } from "semantic-ui-react";
 

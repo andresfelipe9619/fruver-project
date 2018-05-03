@@ -17,7 +17,7 @@ export function loadDashboard() {
     return (dispatch) => {
         dispatch(dashboardPageLoading(true));
 
-        fetch('/productos').then((response) => {
+        /*fetch('/productos').then((response) => {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
@@ -25,6 +25,7 @@ export function loadDashboard() {
             dispatch(dashboardPageLoading(false));
 
             return response;
-        }).then((response) => response.json()).then((items) => dispatch(dashboardPageLoaded(items))).catch(() => dispatch(dashboardPageErrored(true)));
+        }).then((response) => response.json()).then((items) => dispatch(dashboardPageLoaded(items))).catch(() => dispatch(dashboardPageErrored(true)));*/
     };
 }
+

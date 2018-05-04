@@ -1,19 +1,71 @@
 // JavaScript Document
 
 import React, { Component } from "react";
-import { Form, Text } from "react-form";
 import { MapWithAMarker } from "./../map/Map.js";
-
+import { connect } from "react-redux";
+import { loadContact } from "../../actions/contactActions";
 import {
   Container,
   Grid,
   Header,
-  Button
+  Button,
+  Form,
+  Segment,
+  Dimmer,
+  Loader
 } from "semantic-ui-react";
 
-export class Contact extends Component {
+class Contact extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      asunto: "",
+      message: ""
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const { username, password } = this.state;
+    const user = {
+      username,
+      password
+    };
+
+    this.props.requestLogin(user);
+  }
+
+  componentDidMount() {
+    this.props.loadPage();
+  }
+
   render() {
-    return (
+    if (this.props.hasErrored) {
+      return <h1>Error</h1>;
+    } else if (this.props.isLoading) {
+      return (
+        <Segment
+          style={{
+            marginTop: "7em",
+            height: "20em"
+          }}
+        >
+          <Dimmer inverted active>
+            <Loader size="big">Loading</Loader>
+          </Dimmer>
+        </Segment>
+      );
+    } else {
+      return (
         <Container>
           <section>
             <div>
@@ -44,44 +96,55 @@ export class Contact extends Component {
               <aside>fruveralejandro@hotmail.com</aside>
             </article>
           </section>
+          <Container>
+            <Grid style={{ marginTop: "2em" }}>
+              <Grid.Row>
+                <Grid.Column>
+                  <Header textalign="center">ESCRIBENOS</Header>
+                  <Form>
+                    <Form.Field>
+                      <label>First Name</label>
+                      <input placeholder="First Name" />
+                    </Form.Field>
+                    <Form.Field>
+                      <label>E-Mail:</label>
+                      <input type="text" name="email" />
+                    </Form.Field>
+                    <Form.Field>
+                      <label>Asunto:</label>
+                      <input type="text" name="asunto" />
+                      <label>Mensaje:</label>
+                      <textarea id="form-text-area" name="textarea" />
+                    </Form.Field>
+                    <Button type="submit">Enviar</Button>
+                  </Form>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Container>
         </Container>
-        <Container>
-          <Grid style={{ marginTop: "2em" }}>
-            <Grid.Row>
-              <Grid.Column>
-                <Header textalign="center">ESCRIBENOS</Header>
-                <form>
-                  <label>
-                    Nombre:
-                    <br />
-                    <input type="text" name="nombre" />
-                    <br />
-                  </label>
-                  <label>
-                    E-Mail:
-                    <br />
-                    <input type="text" name="email" />
-                    <br />
-                  </label>
-                  <label>
-                    Asunto:
-                    <br />
-                    <input type="text" name="asunto" />
-                    <br />
-                  </label>
-                  <label>
-                    Mensaje:
-                    <br />
-                    <textarea id="form-text-area" name="textarea" />
-                  </label>
-                </form>
-                <p>
-                  <Button>Enviar</Button>
-                </p>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Container>
-    );
+      );
+    }
   }
 }
+const mapStateToProps = state => {
+  return {
+    message: state.contactReducer.contactLoaded,
+    isLoading: state.contactReducer.contactLoading,
+    hasErrored: state.contactReducer.contactErrored
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    loadPage: () => {
+      dispatch(loadContact());
+    },
+    errorMessage: () => {
+      dispatch();
+    },
+    successMessage: () => {
+      dispatch();
+    }
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);

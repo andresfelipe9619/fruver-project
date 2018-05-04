@@ -5,7 +5,7 @@ import Dashboard from './components/dashboard/Dashboard.js';
 import Navbar from './components/header/Navbar.js';
 import {Footer} from './components/footer/Footer.js';
 import {Register} from './components/auth/Register.js';
-import {Contact} from './components/contact/Contact.js';
+import Contact from './components/contact/Contact.js';
 import {Route, withRouter, Switch} from 'react-router-dom';
 import {Container} from 'semantic-ui-react';
 import './App.css'
@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div>
         <Navbar></Navbar>
-        <Container className="main">
+        <Container style={{marginTop: '7em'}}>
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/contacto" component={Contact}/>

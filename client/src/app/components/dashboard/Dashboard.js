@@ -16,7 +16,6 @@ class Dashboard extends Component {
 
   render() {
     const { match } = this.props;
-    console.log('MATCH', match)
     if (this.props.hasErrored) {
       return <h1>Error</h1>;
     } else if (this.props.isLoading) {

@@ -11,7 +11,7 @@ var fetchUrl = require("fetch").fetchUrl;
 // const users = require('./routes/users'); const User =
 // require('./model/user');
 
-const PORT = 27017;  
+const PORT = 5000;  
 
 const PRODUCTS = {
     data: [
@@ -79,7 +79,7 @@ app.get('/producto', (req, res) => {
     //     res.send(body);
     // })
 
-    res.send(PRODUCTS);
+    res.status(200).send(PRODUCTS);
 });
 
 app.post('/authenticate', (req, res)=>{

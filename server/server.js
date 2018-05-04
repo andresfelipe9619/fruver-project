@@ -9,7 +9,7 @@ var fetchUrl = require("fetch").fetchUrl;
 // const users = require('./routes/users'); const User =
 // require('./model/user');
 
-const PORT = 27017;  
+const PORT = 5000;  
 
 const PRODUCTS = {
     data: [
@@ -64,7 +64,7 @@ app.get('/home', (req, res) => {
     res.json({message: 'Responding from express'});
 });
 
-app.get('/producto', (req, res) => {
+app.get('/productos', (req, res) => {
 
     // fetchUrl('https://api.otreeba.com/v1/strains',(error, meta, body) => {
     //     if (error) {

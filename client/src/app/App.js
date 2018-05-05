@@ -7,6 +7,7 @@ import {Footer} from './components/footer/Footer.js';
 import {Register} from './components/auth/Register.js';
 import Contact from './components/contact/Contact.js';
 import {Route, withRouter, Switch} from 'react-router-dom';
+import PrivateRoute from './components/auth/PrivateRoute';
 import {Container} from 'semantic-ui-react';
 import './App.css'
 
@@ -20,7 +21,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/contacto" component={Contact}/>
-            <Route path="/dashboard" component={Dashboard}/>
+            <PrivateRoute path="/dashboard" component={Dashboard}/>
             <Route exact path="/registro" component={Register}/>
             <Route exact path="/ingreso" component={Login}/>
           </Switch>

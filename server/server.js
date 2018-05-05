@@ -32,7 +32,7 @@ const USERS = [
         id: 12,
         username: 'andres',
         admin: true,
-        password: 'mamasita'
+        password: 'mamasita',
     }, {
         id: 16,
         username: 'camilo',

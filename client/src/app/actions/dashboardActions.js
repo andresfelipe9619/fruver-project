@@ -17,7 +17,7 @@ export function loadDashboard() {
     return (dispatch) => {
         dispatch(dashboardPageLoading(true));
 
-        fetch('https://api.otreeba.com/v1/strains').then((response) => {
+        fetch('/dashboard').then((response) => {
             if (!response.ok) {
                 throw Error(response.statusText);
             }

@@ -17,7 +17,7 @@ export function loadHome() {
     return (dispatch) => {
         dispatch(homePageLoading(true));
 
-        fetch('https://api.otreeba.com/v1/strains').then((response) => {
+        fetch('/home').then((response) => {
             if (!response.ok) {
                 throw Error(response.statusText);
             }

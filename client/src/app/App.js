@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Home from './components/home/Home.js';
+import NoMatch from './components/home/NoMatch.js';
 import Login from './components/auth/Login.js';
 import Dashboard from './components/dashboard/Dashboard.js';
 import Navbar from './components/header/Navbar.js';
@@ -24,6 +25,7 @@ class App extends Component {
             <PrivateRoute path="/dashboard" component={Dashboard}/>
             <Route exact path="/registro" component={Register}/>
             <Route exact path="/ingreso" component={Login}/>
+            <Route component={NoMatch} />
           </Switch>
         </Container>
         <Footer></Footer>

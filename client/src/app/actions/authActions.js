@@ -5,9 +5,12 @@ import {
     REGISTER_REQUEST,
     REGISTER_FAILURE,
     REGISTER_SUCCESS,
-    LOGOUT
+    LOGOUT_REQUEST
 } from './constants/ActionTypes';
 
+function logoutRequest(user) {
+    return {type: LOGOUT_REQUEST, user};
+}
 
 function loginRequest(user) {
     return {type: LOGIN_REQUEST, user};
@@ -20,6 +23,12 @@ function loginSuccess(user) {
 function loginFailure(error) {
     return {type: LOGIN_FAILURE, error};
 
+}
+
+export function logout(){
+    return dispatch =>{
+        dispatch(loginSuccess({}));
+    }
 }
 
 export function login(user) {

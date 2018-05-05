@@ -7,7 +7,7 @@ export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
-export const LOGOUT = 'LOGOUT';
+export const LOGOUT_REQUEST = 'LOGOUT';
 
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const FETCH_PRODUCT = 'FETCH_PRODUCT';

@@ -10,6 +10,8 @@ import {
     Header,
     Icon
 } from 'semantic-ui-react'
+import { logout } from "../../actions/authActions";
+
 import mBanner from './banner.png';
 
 class Navbar extends Component {
@@ -18,10 +20,13 @@ class Navbar extends Component {
         this.state = {
             activeItem: ''
         };
+        this.handleLogoutClick = this.handleLogoutClick.bind(this);
 
     }
     handleItemClick = (e, {name}) => this.setState({activeItem: name})
-
+    handleLogoutClick(e) {
+        this.props.requestLogout();
+    }
     render() {
         const {activeItem} = this.state;
         return (
@@ -75,7 +80,7 @@ class Navbar extends Component {
                                         <Header.Content>
                                                 {this.props.user.username}
                                         </Header.Content>
-                                            <Button as={Link} floated="right" to="/ingreso">Cerrar Sesion</Button>
+                                            <Button as={Link} floated="right" to="/ingreso" onClick={this.handleLogoutClick}>Cerrar Sesion</Button>
                                         </Header>
                                     </Segment>
                                     
@@ -97,13 +102,10 @@ const mapStateToProps = (state) => {
 };  
 const mapDispatchToProps = (dispatch) => {
     return {
-        requestLogin: (user) => {
-            dispatch();
-        },
         requestLogout: () =>{
-            dispatch()
+            dispatch(logout())
         }
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

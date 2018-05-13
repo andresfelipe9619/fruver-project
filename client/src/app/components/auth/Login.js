@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 import {
   Button,
   Form,
@@ -10,8 +10,9 @@ import {
   Loader,
   Dimmer
 } from "semantic-ui-react";
-import { login } from "../../actions/authActions";
-import { loadLogin } from "../../actions/loginActions";
+import {login} from "../../actions/authActions";
+import {loadLogin} from "../../actions/loginActions";
+import AlertMessage from "./AlertMessage";
 
 class Login extends Component {
   constructor(props) {
@@ -21,26 +22,36 @@ class Login extends Component {
       password: ""
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this
+      .handleChange
+      .bind(this);
+    this.handleSubmit = this
+      .handleSubmit
+      .bind(this);
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const { username, password } = this.state;
+    const {username, password} = this.state;
     const user = {
       username,
       password
     };
 
-    this.props.requestLogin(user);
+    this
+      .props
+      .requestLogin(user);
   }
   componentDidMount() {
-    this.props.loadPage();
+    this
+      .props
+      .loadPage();
   }
   render() {
     if (this.props.hasErrored) {
@@ -49,10 +60,9 @@ class Login extends Component {
       return (
         <Segment
           style={{
-            marginTop: "7em",
-            height: "20em"
-          }}
-        >
+          marginTop: "7em",
+          height: "20em"
+        }}>
           <Dimmer inverted active>
             <Loader size="big">Loading</Loader>
           </Dimmer>
@@ -61,18 +71,21 @@ class Login extends Component {
     } else {
       return (
         <div>
+
           <Grid
             textAlign="center"
             style={{
-              height: "100%"
-            }}
-            verticalAlign="middle"
-          >
-            <Grid.Column
-              style={{
-                maxWidth: 450
-              }}
-            >
+            height: "100%"
+          }}
+            verticalAlign="middle">
+            <Grid.Column style={{
+              maxWidth: 450
+            }}>
+              {this.props.alertSucces
+                ? <AlertMessage type='success' msg={this.props.alertSucces}/>
+                : this.props.alertError
+                  ? <AlertMessage type='error' msg={this.props.alertError}/>
+                  : null} 
               <Header as="h2" color="teal" textAlign="center">
                 Inicia Sesión con tu cuenta
               </Header>
@@ -86,8 +99,7 @@ class Login extends Component {
                     name="username"
                     placeholder="Nombre de usuario"
                     onChange={this.handleChange}
-                    value={this.state.username}
-                  />
+                    value={this.state.username}/>
                   <Form.Input
                     required
                     fluid
@@ -97,8 +109,7 @@ class Login extends Component {
                     placeholder="Contraseña"
                     type="password"
                     onChange={this.handleChange}
-                    value={this.state.password}
-                  />
+                    value={this.state.password}/>
 
                   <Button color="teal" type="submit" fluid size="large">
                     Iniciar Sesión
@@ -106,13 +117,14 @@ class Login extends Component {
                 </Segment>
               </Form>
               <Message>
-                No tienes cuenta?
-                <a href="#">Crear Cuenta</a>
+                No tienes cuenta?   
+                <a href="/registro">  Crear Cuenta</a>
               </Message>
               <Message>
-                *Es necesario tener una cuenta con los datos completos de la
-                empresa para poder realizar su pedido.
+                *Es necesario tener una cuenta con los datos completos de la empresa para poder
+                realizar su pedido.
               </Message>
+
             </Grid.Column>
           </Grid>
         </div>
@@ -127,7 +139,9 @@ const mapStateToProps = state => {
     hasFailed: state.authReducer.loginFailure,
     message: state.loginReducer.loginLoaded,
     isLoading: state.loginReducer.loginLoading,
-    hasErrored: state.loginReducer.loginErrored
+    hasErrored: state.loginReducer.loginErrored,
+    alertSucces: state.alertReducer.alertSuccess,
+    alertError: state.alertReducer.alertError
   };
 };
 const mapDispatchToProps = dispatch => {

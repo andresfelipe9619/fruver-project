@@ -103,20 +103,24 @@ class Contact extends Component {
                   <Header textalign="center">ESCRIBENOS</Header>
                   <Form>
                     <Form.Field>
-                      <label>First Name</label>
-                      <input placeholder="First Name" />
+                      <label>Nombre</label>
+                      <input placeholder="Nombre" />
                     </Form.Field>
                     <Form.Field>
-                      <label>E-Mail:</label>
-                      <input type="text" name="email" />
+                      <label>E-mail:</label>
+                      <input type="text" name="email" placeholder="Correo Electrónico" />
                     </Form.Field>
                     <Form.Field>
                       <label>Asunto:</label>
-                      <input type="text" name="asunto" />
+                      <input type="text" name="asunto" placeholder="Asunto"/>
                       <label>Mensaje:</label>
-                      <textarea id="form-text-area" name="textarea" />
+                      <textarea id="form-text-area" name="textarea" placeholder="Escriba aquí su mensaje..."/>
                     </Form.Field>
-                    <Button type="submit">Enviar</Button>
+<<<<<<< HEAD
+                    <Button type="submit" style={{backgroundColor:"#2eb050"}}>Enviar</Button>
+=======
+                    <Button color="green" type="submit">Enviar</Button>
+>>>>>>> 2915d4cd6a8b21b9db08295d32a1cbc809661a62
                   </Form>
                 </Grid.Column>
               </Grid.Row>

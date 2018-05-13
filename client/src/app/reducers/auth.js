@@ -17,6 +17,15 @@ function loginFailure(state = false, action) {
     }
 }
 
+function logoutRequest(state = {}, action) {
+    switch (action.type) {
+        case LOGOUT_REQUEST:
+            return action.user;
+        default:
+            return state;
+    }
+}
+
 function loginRequest(state = {}, action) {
     switch (action.type) {
         case LOGIN_REQUEST:
@@ -26,14 +35,6 @@ function loginRequest(state = {}, action) {
     }
 }
 
-function logoutRequest(state = {}, action) {
-    switch (action.type) {
-        case LOGOUT_REQUEST:
-            return action.user;
-        default:
-            return state;
-    }
-}
 
 function loginSuccess(state = {} , action) {
     switch (action.type) {

@@ -18,7 +18,7 @@ function homeLoading(state = false, action) {
     }
 }
 
-function homeLoaded(state = "you're close" , action) {
+function homeLoaded(state = "Waiting to load home..." , action) {
     switch (action.type) {
         case HOME_PAGE_LOADED:
             return action.message;
@@ -27,7 +27,7 @@ function homeLoaded(state = "you're close" , action) {
     }
 }
 
-export function homeReducer(state = {}, action){
+export default function homeReducer(state = {}, action){
     return {
         homeErrored: homeErrored(state.homeErrored, action),
         homeLoading: homeLoading(state.homeLoading, action),

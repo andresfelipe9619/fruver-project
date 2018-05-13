@@ -1,14 +1,7 @@
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const app = express();
-const mongodb = require('mongodb');
-const mongoose = require('mongoose');
-const config = require('./config/database');
-var fetchUrl = require("fetch").fetchUrl;
-// const users = require('./routes/users'); const User =
-// require('./model/user');
+const http = require('http');
+const app = require('./app');
 
+<<<<<<< HEAD
 const PORT = 5000;  
 
 const PRODUCTS = {
@@ -83,26 +76,14 @@ app.post('/authenticate', (req, res)=>{
         res.send('Username or password wrong')
     }
 })
+=======
+const PORT = process.env.PORT || 5000;
+
+const server = http.createServer(app);
+>>>>>>> develop
 
 app.listen(PORT, (err) => {
     err
-        ? console.log(`cannot coonect to the port ${PORT} with error ${err}`)
-        : console.log(`connected to port ${PORT} succesfully`)
+        ? console.log(` cannot coonect to the port ${PORT} with error $ {err}`)
+        : console.log(` connected to port ${PORT} succesfully `)
 });
-
-
-//Connection to MongoDB
-/*
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
-
-// Connection URL
-const url = 'mongodb://localhost:27017/fruver';
-
-// Use connect method to connect to the server
-MongoClient.connect(url, function(err, client) {
-  assert.equal(null, err);
-  console.log("Successfully connected to server");
-
-  client.close();
-});*/

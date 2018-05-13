@@ -14,8 +14,16 @@ function homePageErrored(bool) {
 }
 
 
+<<<<<<< HEAD
+=======
+        fetch('/home').then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+>>>>>>> develop
 
 
+<<<<<<< HEAD
 
 export function loadHome() {
     return (dispatch) => {
@@ -28,7 +36,13 @@ export function loadHome() {
 
             dispatch(homePageLoading(false));
 
+=======
+>>>>>>> develop
             return response;
         }).then((response) => response.json()).then((items) => dispatch(homePageLoaded(items))).catch(() => dispatch(homePageErrored(true)));
     };
 }
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> develop

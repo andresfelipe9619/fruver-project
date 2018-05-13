@@ -17,15 +17,24 @@ export function loadDashboard() {
     return (dispatch) => {
         dispatch(dashboardPageLoading(true));
 
+<<<<<<< HEAD
         fetch('/productos').then((response) => {
+=======
+        fetch('/dashboard').then((response) => {
+>>>>>>> develop
             if (!response.ok) {
                 throw Error(response.statusText);
             }
 
             dispatch(dashboardPageLoading(false));
+            console.log('RESPONSE', response);
 
             return response;
+<<<<<<< HEAD
         }).then((response) => response.json()).then((items) => dispatch(dashboardPageLoaded(items))).catch(() => dispatch(dashboardPageErrored(true)));
+=======
+        }).then((response) => response.json()).then((items) => dispatch(dashboardPageLoaded(items))).catch((err) => dispatch(dashboardPageErrored(err)));
+>>>>>>> develop
     };
 }
 

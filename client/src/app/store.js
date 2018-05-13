@@ -1,25 +1,25 @@
+// eslint-disable-next-line
 import {createStore, combineReducers, applyMiddleware, compose} from "redux";
-import {createLogger} from "redux-logger";
-import {homeReducer} from "./reducers/home";
-import {dashboardReducer} from "./reducers/dashboard";
-import {authenticationReducer} from './reducers/auth';
+// import {createLogger} from "redux-logger";
+import rootReducer from "./reducers"
 import promise from "redux-promise-middleware";
-import {routerMiddleware, routerReducer} from 'react-router-redux';
+// eslint-disable-next-line
 import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 // Create a history of your choosing (we're using a browser history in this
 // case)
-export const history = createHistory();
 
 
-const enhancers = [];
+<<<<<<< HEAD
+//const enhancers = [window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()];
+=======
+const enhancers = [window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()];   
+>>>>>>> 2915d4cd6a8b21b9db08295d32a1cbc809661a62
 
-const middleware = [thunk, routerMiddleware(history), createLogger(), promise()];
+const middleware = [thunk, promise()];
 
-const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
+const composedEnhancers = compose(applyMiddleware(...middleware) /*...enhancers*/);
 
-const store = createStore(combineReducers({homeReducer, dashboardReducer, routerReducer, authenticationReducer}), {}, composedEnhancers);
-// const store = createStore(
-//     combineReducers(
-//         {homeErrored, homeLoaded, homeLoading}), {}, applyMiddleware(createLogger(), thunk, promise()));
+const store = createStore(rootReducer, {}, composedEnhancers);
+
 export default store;

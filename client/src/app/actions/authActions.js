@@ -5,10 +5,21 @@ import {
     REGISTER_REQUEST,
     REGISTER_FAILURE,
     REGISTER_SUCCESS,
-    LOGOUT
+    LOGOUT_REQUEST
 } from './constants/ActionTypes';
+import {Redirect} from 'react-router-dom';
 
-import {userService} from '../API';
+import {
+    alertError,
+    alertSuccess,
+    alertClear,
+    clearAlerts
+} from './alertActions';
+
+
+function logoutRequest(user) {
+    return {type: LOGOUT_REQUEST, user};
+}
 
 function loginRequest(user) {
     return {type: LOGIN_REQUEST, user};
@@ -23,17 +34,42 @@ function loginFailure(error) {
 
 }
 
+export function logout() {
+    return dispatch => {
+        dispatch(loginSuccess({}));
+    }
+}
+
 export function login(user) {
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    };
+
     return dispatch => {
         dispatch(loginRequest(user));
-        userService
-            .login(user)
-            .then(user => {
+
+        fetch('/authenticate', requestOptions).then(response => {
+            if (!response.ok) {
+                return Promise.reject(response.statusText);
+            }
+            dispatch(loginRequest({}));
+            return response;
+        }).then((response) => response.json()).then((user) => {
+            if (user.msg) {
+                dispatch(alertError(user.msg));
+            } else {
+                dispatch(alertSuccess('You are login'));
                 dispatch(loginSuccess(user));
-                // history.push('/');
-            }, error => {
-                dispatch(loginFailure(error));
-                // dispatch(alertActions.error(error));
-            });
+                dispatch(alertClear(true));
+                dispatch(clearAlerts())
+            }
+        }).catch((err) => {
+            dispatch(alertError(err));            
+            dispatch(loginFailure(err))
+        });
     };
 }

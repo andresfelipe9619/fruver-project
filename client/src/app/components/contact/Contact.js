@@ -116,7 +116,7 @@ class Contact extends Component {
                       <label>Mensaje:</label>
                       <textarea id="form-text-area" name="textarea" />
                     </Form.Field>
-                    <Button type="submit">Enviar</Button>
+                    <Button color="green" type="submit">Enviar</Button>
                   </Form>
                 </Grid.Column>
               </Grid.Row>

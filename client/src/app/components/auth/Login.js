@@ -12,10 +12,14 @@ import {
 } from "semantic-ui-react";
 import {login} from "../../actions/authActions";
 import {loadLogin} from "../../actions/loginActions";
+<<<<<<< HEAD
 import swal from 'sweetalert';
 import {Redirect, Link} from 'react-router-dom';
 import AlertMsg from "./AlertMsg";
 
+=======
+import AlertMessage from "./AlertMessage";
+>>>>>>> bf63e8c79aee1c7fe9bda3acc8e5d9e85e034d9e
 
 class Login extends Component {
   constructor(props) {
@@ -76,6 +80,7 @@ class Login extends Component {
     } else{
       return (
         <div>
+
           <Grid
             textAlign="center"
             style={{
@@ -85,7 +90,15 @@ class Login extends Component {
             <Grid.Column style={{
               maxWidth: 450
             }}>
+<<<<<<< HEAD
             {this.props.alertError?<AlertMsg type='error'/> :null}
+=======
+              {this.props.alertSucces
+                ? <AlertMessage type='success' msg={this.props.alertSucces}/>
+                : this.props.alertError
+                  ? <AlertMessage type='error' msg={this.props.alertError}/>
+                  : null} 
+>>>>>>> bf63e8c79aee1c7fe9bda3acc8e5d9e85e034d9e
               <Header as="h2" color="teal" textAlign="center">
                 Inicia Sesión con tu cuenta
               </Header> 
@@ -117,8 +130,13 @@ class Login extends Component {
                 </Segment>
               </Form>
               <Message>
+<<<<<<< HEAD
                 No tienes cuenta?
                 <Link to="/registro">Crear Cuenta</Link>
+=======
+                No tienes cuenta?   
+                <a href="/registro">  Crear Cuenta</a>
+>>>>>>> bf63e8c79aee1c7fe9bda3acc8e5d9e85e034d9e
               </Message>
               <Message>
                 *Es necesario tener una cuenta con los datos completos de la empresa para poder
@@ -141,6 +159,10 @@ const mapStateToProps = state => {
     //page
     isLoading: state.loginReducer.loginLoading,
     hasErrored: state.loginReducer.loginErrored,
+<<<<<<< HEAD
+=======
+    alertSucces: state.alertReducer.alertSuccess,
+>>>>>>> bf63e8c79aee1c7fe9bda3acc8e5d9e85e034d9e
     alertError: state.alertReducer.alertError
   };
 };

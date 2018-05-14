@@ -80,12 +80,12 @@ class Navbar extends Component {
                                         <Header.Content>
                                                 {this.props.user.username}
                                         </Header.Content>
-                                            <Button as={Link} floated="right" to="/ingreso" onClick={this.handleLogoutClick}>Cerrar Sesion</Button>
+                                            <Button as={Link} floated="right" to="/ingreso" style={{backgroundColor: "#2eb050"}} onClick={this.handleLogoutClick}>Cerrar Sesion</Button>
                                         </Header>
                                     </Segment>
                                     
                                     : <Segment>
-                                        <Button as={Link} to="/ingreso">Ingreso</Button> <Button as = {Link}
+                                        <Button as={Link} to="/ingreso" style={{backgroundColor:"#2eb050"}} >Ingreso</Button> <Button as = {Link}
                                             to = "/registro" style = {{marginLeft: '0.5em'}} > Registrarse </Button>
                                 </Segment>   }
                             </Menu.Item>

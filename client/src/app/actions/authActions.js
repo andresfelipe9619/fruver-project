@@ -36,7 +36,11 @@ function loginFailure(error) {
 
 export function logout() {
     return dispatch => {
+<<<<<<< HEAD
         dispatch(loginSuccess(false));
+=======
+        dispatch(loginSuccess({}));
+>>>>>>> bf63e8c79aee1c7fe9bda3acc8e5d9e85e034d9e
     }
 }
 
@@ -57,6 +61,7 @@ export function login(user) {
                 return Promise.reject(response.statusText);
             }
             dispatch(loginRequest({}));
+<<<<<<< HEAD
             return response.json();
         }).then((user) => {
             if (user.err) {
@@ -67,6 +72,21 @@ export function login(user) {
         }).catch((err) => {
             dispatch(alertError(err));            
             dispatch(loginFailure(err));
+=======
+            return response;
+        }).then((response) => response.json()).then((user) => {
+            if (user.msg) {
+                dispatch(alertError(user.msg));
+            } else {
+                dispatch(alertSuccess('You are login'));
+                dispatch(loginSuccess(user));
+                dispatch(alertClear(true));
+                dispatch(clearAlerts())
+            }
+        }).catch((err) => {
+            dispatch(alertError(err));            
+            dispatch(loginFailure(err))
+>>>>>>> bf63e8c79aee1c7fe9bda3acc8e5d9e85e034d9e
         });
     };
 }

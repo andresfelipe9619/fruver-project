@@ -13,7 +13,6 @@
         "react-redux": "^5.0.7",
         "react-router": "^4.2.0",
         "react-router-dom": "^4.2.2",
-        "react-router-redux": "^5.0.0-alpha.9",
         "react-scripts": "1.1.4",
         "react-smart-data-table": "^0.5.3",
         "reactstrap": "^5.0.0-beta.3",
@@ -22,7 +21,8 @@
         "redux-promise-middleware": "^5.1.1",
         "redux-thunk": "^2.2.0",
         "semantic-ui": "^2.3.1",
-        "semantic-ui-react": "^0.79.1"
+        "semantic-ui-react": "^0.79.1",
+        "sweetalert": "^2.1.0"
     },
     "scripts": {
         "start": "webpack-dev-server",

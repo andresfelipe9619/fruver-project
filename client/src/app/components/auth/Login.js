@@ -12,14 +12,17 @@ import {
 } from "semantic-ui-react";
 import {login} from "../../actions/authActions";
 import {loadLogin} from "../../actions/loginActions";
-import AlertMessage from "./AlertMessage";
+import swal from 'sweetalert';
+import {Redirect, Link} from 'react-router-dom';
+import AlertMsg from "./AlertMsg";
+
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: "",
-      password: ""
+      password: "",
     };
 
     this.handleChange = this
@@ -68,10 +71,11 @@ class Login extends Component {
           </Dimmer>
         </Segment>
       );
-    } else {
+    }else if(this.props.hasSuccessed){
+      return(<Redirect to="/"/>)
+    } else{
       return (
         <div>
-
           <Grid
             textAlign="center"
             style={{
@@ -81,14 +85,10 @@ class Login extends Component {
             <Grid.Column style={{
               maxWidth: 450
             }}>
-              {this.props.alertSucces
-                ? <AlertMessage type='success' msg={this.props.alertSucces}/>
-                : this.props.alertError
-                  ? <AlertMessage type='error' msg={this.props.alertError}/>
-                  : null} 
+            {this.props.alertError?<AlertMsg type='error'/> :null}
               <Header as="h2" color="teal" textAlign="center">
                 Inicia Sesión con tu cuenta
-              </Header>
+              </Header> 
               <Form size="large" onSubmit={this.handleSubmit}>
                 <Segment stacked>
                   <Form.Input
@@ -118,7 +118,7 @@ class Login extends Component {
               </Form>
               <Message>
                 No tienes cuenta?
-                <a href="#">Crear Cuenta</a>
+                <Link to="/registro">Crear Cuenta</Link>
               </Message>
               <Message>
                 *Es necesario tener una cuenta con los datos completos de la empresa para poder
@@ -134,13 +134,13 @@ class Login extends Component {
 }
 const mapStateToProps = state => {
   return {
+    //auth
     hasRequested: state.authReducer.loginRequest,
     hasSuccessed: state.authReducer.loginSuccess,
     hasFailed: state.authReducer.loginFailure,
-    message: state.loginReducer.loginLoaded,
+    //page
     isLoading: state.loginReducer.loginLoading,
     hasErrored: state.loginReducer.loginErrored,
-    alertSucces: state.alertReducer.alertSuccess,
     alertError: state.alertReducer.alertError
   };
 };

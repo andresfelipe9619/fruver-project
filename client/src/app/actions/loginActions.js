@@ -21,11 +21,10 @@ export function loadLogin() {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
-
             dispatch(loginPageLoading(false));
 
             return response;
-        }).then((response) => response.json()).then((items) => dispatch(loginPageLoaded(items))).catch(() => dispatch(loginPageErrored(true)));
+        }).then((response) => response.json()).then((items) => dispatch(loginPageLoaded(items))).catch((err) => dispatch(loginPageErrored(err)));
     };
 }
 

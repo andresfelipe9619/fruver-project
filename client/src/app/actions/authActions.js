@@ -36,7 +36,7 @@ function loginFailure(error) {
 
 export function logout() {
     return dispatch => {
-        dispatch(loginSuccess({}));
+        dispatch(loginSuccess(false));
     }
 }
 
@@ -57,19 +57,16 @@ export function login(user) {
                 return Promise.reject(response.statusText);
             }
             dispatch(loginRequest({}));
-            return response;
-        }).then((response) => response.json()).then((user) => {
-            if (user.msg) {
-                dispatch(alertError(user.msg));
+            return response.json();
+        }).then((user) => {
+            if (user.err) {
+                dispatch(alertError(user.err));
             } else {
-                dispatch(alertSuccess('You are login'));
                 dispatch(loginSuccess(user));
-                dispatch(alertClear(true));
-                dispatch(clearAlerts())
             }
         }).catch((err) => {
             dispatch(alertError(err));            
-            dispatch(loginFailure(err))
+            dispatch(loginFailure(err));
         });
     };
 }

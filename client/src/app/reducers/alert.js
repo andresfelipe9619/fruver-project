@@ -1,8 +1,7 @@
 import {SUCCESS_ALERT, ERROR_ALERT, CLEAR_ALERT} from '../actions/constants/ActionTypes';
 
-const INITIAL_STATE = { alertSuccess: false, alertError: false, alertClear: false}
 
-export function alertSuccess(state = INITIAL_STATE.alertSuccess, action) {
+export function alertSuccess(state = '', action) {
     switch (action.type) {
         case SUCCESS_ALERT:
             return action.message;
@@ -11,7 +10,7 @@ export function alertSuccess(state = INITIAL_STATE.alertSuccess, action) {
     }
 }
 
-export function alertError(state = INITIAL_STATE.alertError, action) {
+export function alertError(state = '', action) {
     switch (action.type) {
         case ERROR_ALERT:
             return action.message;
@@ -20,7 +19,7 @@ export function alertError(state = INITIAL_STATE.alertError, action) {
     }
 }
 
-export function alertClear(state = INITIAL_STATE, action) {
+export function alertClear(state = '', action) {
     switch (action.type) {
         case CLEAR_ALERT:
             return action.bool;
@@ -30,7 +29,7 @@ export function alertClear(state = INITIAL_STATE, action) {
 }
 
 
-export default function alertReducer(state = INITIAL_STATE, action){
+export default function alertReducer(state = {}, action){
     return {
         alertError: alertError(state.alertError, action),
         alertSuccess: alertSuccess(state.alertSuccess, action),

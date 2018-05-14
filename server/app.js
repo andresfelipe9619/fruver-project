@@ -19,11 +19,14 @@ const USERS = [
         username: 'andres',
         admin: true,
         password: 'mamasita',
+        redirect: false
+        
     }, {
         id: 16,
         username: 'camilo',
         admin: true,
-        password: 'coca123'
+        password: 'coca123',
+        redirect: false
     }
 ]
 
@@ -71,7 +74,7 @@ app.post('/authenticate', (req, res) => {
     if (result) {
         res.status(200).json(result);
     } else {
-        res.status(401).json({ msg: "User doesnt exist" });
+        res.status(401).json({ err: "User doesnt exist" });
     }
 
 });

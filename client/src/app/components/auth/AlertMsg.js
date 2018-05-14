@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Message} from 'semantic-ui-react';
-const AlertMessage = (props) => {
+const AlertMsg = (props) => {
     return (props.type == 'success'
         ? <Message positive>
                 <Message.Header>You are eligible for a reward</Message.Header>
@@ -16,4 +16,4 @@ const AlertMessage = (props) => {
             : null);
 }
 
-export default AlertMessage;
+export default AlertMsg;

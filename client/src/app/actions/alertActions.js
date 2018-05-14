@@ -13,9 +13,8 @@ export function alertClear(bool) {
 }
 
 export function clearAlerts() {
+    console.log('Wth its going on!!!')
     return dispatch => {
-        dispatch(alertSuccess(false));
-        dispatch(alertError(false));
-        dispatch(alertClear(false));
+
     }
 }

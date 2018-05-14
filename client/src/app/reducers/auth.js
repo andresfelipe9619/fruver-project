@@ -36,7 +36,7 @@ function loginRequest(state = {}, action) {
 }
 
 
-function loginSuccess(state = {} , action) {
+function loginSuccess(state = false , action) {
     switch (action.type) {
         case LOGIN_SUCCESS:
             return action.user;

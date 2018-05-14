@@ -10,11 +10,7 @@ import createHistory from 'history/createBrowserHistory';
 // case)
 
 
-<<<<<<< HEAD
 const enhancers = [window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()];   
-=======
-//const enhancers = [window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()];
->>>>>>> bf63e8c79aee1c7fe9bda3acc8e5d9e85e034d9e
 
 const middleware = [thunk, promise()];
 

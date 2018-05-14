@@ -21,10 +21,7 @@
         "express": "^4.16.3",
         "extract-text-webpack-plugin": "^3.0.2",
         "fetch": "^1.1.0",
-<<<<<<< HEAD
         "morgan": "^1.9.0",
-=======
->>>>>>> bf63e8c79aee1c7fe9bda3acc8e5d9e85e034d9e
         "jquery": "^3.3.1",
         "mongodb": "^3.0.7",
         "mongoose": "^5.0.17",
@@ -34,16 +31,7 @@
         "popper.js": "^1.14.3",
         "react": "^16.3.2",
         "react-dom": "^16.3.2",
-<<<<<<< HEAD
         "reactstrap": "^5.0.0-beta.3"
-=======
-        "react-google-maps": "^9.4.5",
-        "react-redux": "^5.0.7",
-        "reactstrap": "^5.0.0-beta.3",
-        "redux": "^4.0.0",
-        "symbol-observable": "^1.2.0",
-        "webpack": "^4.8.3"
->>>>>>> bf63e8c79aee1c7fe9bda3acc8e5d9e85e034d9e
     },
     "devDependencies": {
         "eslint": "4.19.1",

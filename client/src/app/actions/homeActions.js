@@ -13,6 +13,10 @@ function homePageErrored(bool) {
 
 }
 
+
+
+
+
 export function loadHome() {
     return (dispatch) => {
         dispatch(homePageLoading(true));
@@ -21,11 +25,12 @@ export function loadHome() {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
+            
 
             dispatch(homePageLoading(false));
 
-            return response.json();
-        }).then((items) => dispatch(homePageLoaded(items))).catch(() => dispatch(homePageErrored(true)));
+            return response;
+        }).then((response) => response.json()).then((items) => dispatch(homePageLoaded(items))).catch(() => dispatch(homePageErrored(true)));
     };
 }
  

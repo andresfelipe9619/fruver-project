@@ -12,10 +12,13 @@
     "author": "Andres Suarez && Sebastian Hernandez",
     "license": "MIT",
     "dependencies": {
+        "ajv": "^6.4.0",
+        "ajv-keywords": "^3.2.0",
         "assert": "^1.4.1",
         "body-parser": "^1.18.2",
         "concurrently": "^3.5.1",
         "express": "^4.16.3",
+        "extract-text-webpack-plugin": "^3.0.2",
         "fetch": "^1.1.0",
         "morgan": "^1.9.0",
         "jquery": "^3.3.1",

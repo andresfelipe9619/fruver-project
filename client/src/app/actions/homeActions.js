@@ -24,8 +24,8 @@ export function loadHome() {
 
             dispatch(homePageLoading(false));
 
-            return response;
-        }).then((response) => response.json()).then((items) => dispatch(homePageLoaded(items))).catch(() => dispatch(homePageErrored(true)));
+            return response.json();
+        }).then((items) => dispatch(homePageLoaded(items))).catch(() => dispatch(homePageErrored(true)));
     };
 }
  

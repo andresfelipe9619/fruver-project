@@ -72,7 +72,7 @@ class Login extends Component {
         </Segment>
       );
     }else if(this.props.hasSuccessed){
-      return(<Redirect to="/"/>)
+      return(<Redirect to="/dashboard"/>)
     } else{
       return (
         <div>

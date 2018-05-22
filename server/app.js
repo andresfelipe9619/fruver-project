@@ -13,6 +13,8 @@ const productRoutes = require('./routes/products');
 const orderRoutes = require('./routes/orders');
 const invoiceRoutes = require('./routes/invoices');
 
+const MongoClient = require('mongodb').MongoClient
+
 const USERS = [
     {
         id: 12,
@@ -23,9 +25,9 @@ const USERS = [
         
     }, {
         id: 16,
-        username: 'camilo',
+        username: 'sebastian',
         admin: true,
-        password: 'coca123',
+        password: 'sebas123',
         redirect: false
     }
 ]
@@ -60,6 +62,10 @@ app.get('/home', (req, res) => {
 
 app.get('/login', (req, res) => {
     res.send({ message: 'Login loaded from express' });
+});
+
+app.get('/registro', (req, res) => {
+    res.send({ message: 'Registration loaded from express'})
 });
 
 app.get('/dashboard', (req, res) => {
@@ -104,5 +110,22 @@ app.use((error, req, res, next) => {
     });
 });
 
+
+var db
+
+MongoClient.connect('mongodb://admin:123@ds149844.mlab.com:49844/fruver', (err, client) => {
+  if (err) return console.log(err)
+  db = client.db('fruver')
+  app.listen(3001, () => {})
+})
+
+app.post('/registro', (req, res) => {
+    db.collection('cliente').save(req.body, (err, result) => {
+      if (err) return console.log(err)
+  
+      console.log('saved to database')
+      res.redirect('/login')
+    })
+  })
 
 module.exports = app;

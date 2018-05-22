@@ -52,7 +52,7 @@ app.use((req, res, next) => {
 app.use("/products", productRoutes);
 // app.use("/orders", orderRoutes);
 // app.use("/invoices", invoiceRoutes);
-// app.use("/users", userRoutes);
+app.use("/users", userRoutes);
 
 app.get('/home', (req, res) => {
     res.send({ message: 'Responding from express' });

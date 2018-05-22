@@ -6,6 +6,7 @@ import authReducer from "./auth";
 import contactReducer from "./contact"
 import loginReducer from "./login"
 import alertReducer from "./alert"
+import userReducer from "./user"
 
 export default combineReducers({
   homeReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   authReducer,
   contactReducer,
   loginReducer,
-  alertReducer
+  alertReducer,
+  userReducer
 });

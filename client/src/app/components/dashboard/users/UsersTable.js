@@ -1,57 +1,102 @@
-import React, {Component} from 'react';
-import {Table, Checkbox, Button, Icon} from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { Checkbox, Button, Icon, Segment, Dimmer, Loader } from 'semantic-ui-react';
+import { fetchUsers } from '../../../actions/userActions'
+import { Body, Cell, DataTable, Header, HeaderCell, Row } from 'react-semantic-datatable';
 
-export class UsersTable extends Component {
+class UsersTable extends Component {
+    componentDidMount() {
+        this.props.getUsers();
+    }
+
     render() {
-        console.log('TABLE PROPS: ', this.props)
-        return (
-            <div>
-                <Table celled compact definition>
-                    <Table.Header fullWidth>
-                        <Table.Row>
-                            <Table.HeaderCell>Name</Table.HeaderCell>
-                            <Table.HeaderCell>Registration Date</Table.HeaderCell>
-                            <Table.HeaderCell>E-mail address</Table.HeaderCell>
-                            <Table.HeaderCell>Premium Plan</Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
 
-                    <Table.Body>
-                        <Table.Row>
-                            <Table.Cell>John Lilki</Table.Cell>
-                            <Table.Cell>September 14, 2013</Table.Cell>
-                            <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                            <Table.Cell>No</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>Jamie Harington</Table.Cell>
-                            <Table.Cell>January 11, 2014</Table.Cell>
-                            <Table.Cell>jamieharingonton@yahoo.com</Table.Cell>
-                            <Table.Cell>Yes</Table.Cell>
-                        </Table.Row>
-                        <Table.Row>
-                            <Table.Cell>Jill Lewis</Table.Cell>
-                            <Table.Cell>May 11, 2014</Table.Cell>
-                            <Table.Cell>jilsewris22@yahoo.com</Table.Cell>
-                            <Table.Cell>Yes</Table.Cell>
-                        </Table.Row>
-                    </Table.Body>
-
-                    <Table.Footer fullWidth>
-                        <Table.Row>
-                            <Table.HeaderCell/>
-                            <Table.HeaderCell colSpan='4'>
-                                <Button floated='right' icon labelPosition='left' primary size='small'>
-                                    <Icon name='user'/>
-                                    Add User
+        if (this.props.hasErrored) {
+            return <h1>Error</h1>;
+        } else if (this.props.isLoading) {
+            return (
+                <Segment
+                    style={{
+                        marginTop: "7em",
+                        height: "20em"
+                    }}
+                >
+                    <Dimmer inverted active>
+                        <Loader size="big">Loading</Loader>
+                    </Dimmer>
+                </Segment>
+            );
+        } else {
+            const data = {
+                "headers": ["NIT", "Nombre", "Correo electronico", "Cuenta de cobro", "Acciones"],
+                "data": this.props.users
+            };
+            return (
+                <div>
+                    <DataTable pagination color="red">
+                        <Header>
+                            {
+                                data.headers.map((header, index) => {
+                                    return (
+                                        <HeaderCell sortable key={index}>
+                                            {header}
+                                        </HeaderCell>
+                                    )
+                                })
+                            }
+                        </Header>
+                        <Body>
+                            {
+                                data.data.map((row, index) => {
+                                    return (
+                                        <Row key={index}>
+                                            {
+                                                data.headers.map((header, index2) => {
+                                                    return (
+                                                        <Cell key={index2}>
+                                                            {row[header]}
+                                                        </Cell>
+                                                    )
+                                                })
+                                            }
+                                        </Row>
+                                    )
+                                })
+                            }
+                        </Body>
+                    </DataTable>
+                    {/* <Table.Footer fullWidth>
+                            <Table.Row>
+                                <Table.HeaderCell />
+                                <Table.HeaderCell colSpan='4'>
+                                    <Button floated='right' icon labelPosition='left' primary size='small'>
+                                        <Icon name='user' />
+                                        Add User
                                 </Button>
-                                <Button size='small'>Approve</Button>
-                                <Button disabled size='small'>Approve All</Button>
-                            </Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Footer>
-                </Table>
-            </div>
-        );
+                                    <Button size='small'>Approve</Button>
+                                    <Button disabled size='small'>Approve All</Button>
+                                </Table.HeaderCell>
+                            </Table.Row>
+                        </Table.Footer> */}
+                </div>
+            );
+        }
     }
 }
+const mapStateToProps = state => {
+    return {
+        users: state.userReducer.fetchUsersSuccess,
+        hasErrored: state.userReducer.fetchUsersFailure,
+        isLoading: state.userReducer.fetchUsersRequest,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getUsers: () => {
+            dispatch(fetchUsers())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UsersTable);

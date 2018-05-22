@@ -118,8 +118,8 @@ class Login extends Component {
                 </Segment>
               </Form>
               <Message>
-                No tienes cuenta?
-                <Link to="/registro">Crear Cuenta</Link>
+                No tienes cuenta? 
+                <Link to="/registro"> Crear Cuenta </Link>
               </Message>
               <Message>
                 *Es necesario tener una cuenta con los datos completos de la empresa para poder

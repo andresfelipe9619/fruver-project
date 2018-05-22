@@ -17,15 +17,15 @@ export const Register = () => (
       <Form>
         <Form.Field>
           <label>Nombre</label>
-          <input placeholder="ej: Subway unicentro" />
+          <input placeholder="ej: Subway" />
+        </Form.Field>
+        <Form.Field>
+          <label> Correo Electrónico </label>
+          <input placeholder="ej: abc@mycorp.com" />
         </Form.Field>
         <Form.Field>
           <label>NIT</label>
           <input placeholder="NIT" />
-        </Form.Field>
-        <Form.Field>
-          <label>Dirección</label>
-          <input placeholder="ej: Carrera 100 #169 / cc. Unicentro local 111" />
         </Form.Field>
         <Form.Field>
           <Checkbox label="Estoy de acuerdo con los terminos y condiciones de servicio" checked/>

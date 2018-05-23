@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Checkbox, Button, Icon, Header, Segment, Dimmer, Loader } from 'semantic-ui-react';
 import ReactCollapsingTable from 'react-collapsing-table'
-import { fetchUsers } from '../../../actions/userActions';
+import { fetchProducts } from '../../../actions/productActions';
 
-class UsersTable extends Component {
+class ProductsTable extends Component {
 
     componentDidMount() {
-        this.props.getUsers();
+        this.props.getProducts();
         console.log('Table mounted');
     }
     componentDidUpdate(prevProps) {
@@ -21,14 +21,14 @@ class UsersTable extends Component {
 
 
     render() {
-        const users = this.props.users;
+        const products = this.props.products;
         // const rows = [
         //     { id: 1, firstName: 'Paul', lastName: 'Darragh', }
         // ]
         const columns = [
-            { accessor: 'firstname', label: 'First Name', priorityLevel: 1, position: 1, minWidth: 150, },
-            { accessor: 'lastname', label: 'Last Name', priorityLevel: 2, position: 2, minWidth: 150, },
-            { accessor: 'customer_url', label: 'Customer url', priorityLevel: 2, position: 2, minWidth: 150, },
+            { accessor: 'name', label: 'Name', priorityLevel: 1, position: 1, minWidth: 150, },
+            { accessor: 'product_url', label: 'Product url', priorityLevel: 2, position: 2, minWidth: 150, },
+
         ]
 
         if (this.props.hasErrored) {
@@ -46,11 +46,11 @@ class UsersTable extends Component {
                     </Dimmer>
                 </Segment>
             );
-        } else if (users) {
+        } else if (products) {
 
             return (
                 <div>
-                    <ReactCollapsingTable rows={users} columns={columns} showSearch showPagination rowSize={5}/>
+                    <ReactCollapsingTable rows={products} columns={columns} showSearch showPagination rowSize={5}/>
                 </div>
             );
         } else return null;
@@ -58,18 +58,18 @@ class UsersTable extends Component {
 }
 const mapStateToProps = state => {
     return {
-        users: state.userReducer.fetchUsersSuccess,
-        hasErrored: state.userReducer.fetchUsersFailure,
-        isLoading: state.userReducer.fetchUsersRequest,
+        products: state.productReducer.fetchProductsSuccess,
+        hasErrored: state.productReducer.fetchProductsFailure,
+        isLoading: state.productReducer.fetchProductsRequest,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        getUsers: () => {
-            dispatch(fetchUsers())
+        getProducts: () => {
+            dispatch(fetchProducts())
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersTable);   
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsTable);   

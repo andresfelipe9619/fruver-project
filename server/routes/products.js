@@ -6,11 +6,11 @@ var fetchUrl = require("fetch").fetchUrl;
 // const Product = require("../models/product");
 
 router.get("/", (req, res, next) => {
-    fetchUrl('https://api.predic8.de:443/shop/products/?limit=30', (error, meta, body) => {
+    fetchUrl('https://api.predic8.de:443/shop/products/', (error, meta, body) => {
         if(error){
               throw Error(error);
          }
-        res.send(body);
+        res.send(body.toString());
     })
 })
 

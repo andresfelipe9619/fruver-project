@@ -27,7 +27,15 @@ const USERS = [
         admin: true,
         password: 'coca123',
         redirect: false
-    }
+    },
+    {
+        id: 10,
+        username: 'invitado',
+        admin: true,
+        password: 'invitado',
+        redirect: false
+    },
+
 ]
 
 // Body Parser Middleware

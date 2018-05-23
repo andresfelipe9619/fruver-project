@@ -43,7 +43,7 @@ function fetchUsersSuccess(state = null , action) {
     }
 }
 
-export default function authenticationReducer(state = {}, action){
+export default function userReducer(state = {}, action){
     return {
         fetchUsersFailure: fetchUsersFailure(state.fetchUsersFailure, action),
         fetchUsersRequest: fetchUsersRequest(state.fetchUsersRequest, action),

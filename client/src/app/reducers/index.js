@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-
+import { reducer as sematable } from 'sematable';
 import homeReducer from "./home";
 import dashboardReducer from "./dashboard";
 import authReducer from "./auth";
@@ -7,6 +7,7 @@ import contactReducer from "./contact"
 import loginReducer from "./login"
 import alertReducer from "./alert"
 import userReducer from "./user"
+import productReducer from "./product"
 
 export default combineReducers({
   homeReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
   contactReducer,
   loginReducer,
   alertReducer,
-  userReducer
+  userReducer,
+  productReducer
 });

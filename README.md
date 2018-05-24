@@ -19,10 +19,10 @@ npm start
 ```
 
 ## Built With
-
-* [Reactjs](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [Reactjs](https://reactjs.org/) - Library for bui lding user interfaces
+* [Redux](https://www.mongodb.com) -  state management
 * [Nodejs](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 * [Express](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-* [MongoDB(https://www.mongodb.com) - Database used
-* [npm](https://maven.apache.org/) - Dependency Management
-
+* [MongoDB](https://www.mongodb.com) - Database used
+* [npm](https://www.npmjs.com/) - Dependency Management
+* [React Semantic UI](https://react.semantic-ui.com/introduction) - Framework for creating  layouts

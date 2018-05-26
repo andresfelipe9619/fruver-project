@@ -4,10 +4,9 @@ import UsersTable   from "./users/UsersTable";
 import ProductsTable   from "./products/ProductsTable";
 import { connect } from "react-redux";
 import { loadDashboard } from "../../actions/dashboardActions";
-// import { ProductsTable } from "./products/ProductsTable";
-// import { OrdersTable } from "./orders/OrdersTable";
-// import { InvoicesTable } from "./invoices/InvoicesTable";
-// import { DevolutionsTable } from "./devolutions/DevolutionsTable";
+// import  OrdersTable  from "./orders/OrdersTable";
+// import  InvoicesTable  from "./invoices/InvoicesTable";
+// import  DevolutionsTable  from "./devolutions/DevolutionsTable";
 import { Grid, Header, Segment, Dimmer, Loader } from "semantic-ui-react";
 import { Route, Switch} from "react-router-dom";
 class Dashboard extends Component {

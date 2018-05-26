@@ -60,7 +60,7 @@ app.use((req, res, next) => {
 
 // Routes which should handle requests
 app.use("/products", productRoutes);
-// app.use("/orders", orderRoutes);
+app.use("/order", orderRoutes);
 // app.use("/invoices", invoiceRoutes);
 app.use("/users", userRoutes);
 

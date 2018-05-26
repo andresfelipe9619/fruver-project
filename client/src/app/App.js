@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Home from './components/home/Home.js';
 import NoMatch from './components/home/NoMatch.js';
 import Login from './components/auth/Login.js';
+import Order from './components/order/Order.js'
 import Dashboard from './components/dashboard/Dashboard.js';
 import Navbar from './components/header/Navbar.js';
 import {Footer} from './components/footer/Footer.js';
@@ -17,7 +18,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar></Navbar>
+        <Navbar/>
         <Container style={{marginTop: '7em'}}>
           <Switch>
             <Route exact path="/" component={Home}/>
@@ -29,7 +30,7 @@ class App extends Component {
             <Route component={NoMatch} />
           </Switch>
         </Container>
-        <Footer></Footer>
+        <Footer/>
       </div>
     )
   }

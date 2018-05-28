@@ -33,7 +33,8 @@ class Order extends Component {
                     <Header>WTH IS GOING ON</Header>
                     </Grid.Column>
                     <Grid.Column width={12}>
-                    {/* <ProductsTable></ProductsTable> */}
+
+                    <ProductsTable></ProductsTable>
                     </Grid.Column>
                 </Grid>
             );
@@ -60,7 +61,6 @@ const mapDispatchToProps = dispatch => {
         }
     }
 }
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)

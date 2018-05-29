@@ -39,8 +39,7 @@ class ProductsTable extends Component {
                     style={{
                         marginTop: "7em",
                         height: "20em"
-                    }}
-                >
+                    }}>
                     <Dimmer inverted active>
                         <Loader size="big">Loading</Loader>
                     </Dimmer>
@@ -50,10 +49,10 @@ class ProductsTable extends Component {
 
             return (
                 <div>
-                    <ReactCollapsingTable rows={products} columns={columns} showSearch showPagination rowSize={5}/>
+                    <ReactCollapsingTable rows={products} columns={columns} showSearch showPagination rowSize={5} />
                 </div>
             );
-        } else return null;
+        } else { return <div>So... You pass too much in here?</div> }
     }
 }
 const mapStateToProps = state => {

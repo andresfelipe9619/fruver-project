@@ -18,7 +18,7 @@ function dashboardLoading(state = false, action) {
     }
 }
 
-function dashboardLoaded(state = "Not loaded" , action) {
+function dashboardLoaded(state = null , action) {
     switch (action.type) {
         case DASHBOARD_PAGE_LOADED:
             return action.message;

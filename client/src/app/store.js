@@ -14,7 +14,7 @@ const enhancers = [window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOL
 
 const middleware = [thunk, promise()];
 
-const composedEnhancers = compose(applyMiddleware(...middleware) /*...enhancers*/);
+const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
 const store = createStore(rootReducer, {}, composedEnhancers);
 

@@ -29,7 +29,15 @@ const USERS = [
         admin: true,
         password: 'sebas123',
         redirect: false
-    }
+    },
+    {
+        id: 10,
+        username: 'invitado',
+        admin: true,
+        password: 'invitado',
+        redirect: false
+    },
+
 ]
 
 // Body Parser Middleware
@@ -54,7 +62,7 @@ app.use((req, res, next) => {
 app.use("/products", productRoutes);
 // app.use("/orders", orderRoutes);
 // app.use("/invoices", invoiceRoutes);
-// app.use("/users", userRoutes);
+app.use("/users", userRoutes);
 
 app.get('/home', (req, res) => {
     res.send({ message: 'Responding from express' });

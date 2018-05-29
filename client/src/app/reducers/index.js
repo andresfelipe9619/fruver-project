@@ -17,10 +17,7 @@ export default combineReducers({
   contactReducer,
   loginReducer,
   alertReducer,
-<<<<<<< HEAD
-  registerReducer
-=======
+  registerReducer,
   userReducer,
   productReducer
->>>>>>> origin/andres-develop
 });

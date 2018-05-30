@@ -29,7 +29,7 @@ class UsersTable extends Component {
             { accessor: 'nit', label: 'nit', priorityLevel: 1, position: 1, minWidth: 150, },
             { accessor: 'nombre', label: 'nombre', priorityLevel: 2, position: 2, minWidth: 150, },
             { accessor: 'email', label: 'email', priorityLevel: 3, position: 3, minWidth: 150, },
-            { accessor: 'direccion.cc', label: 'direccion', priorityLevel: 4, position: 4, minWidth: 150}
+            { accessor: 'cc', label: 'ubicacion', priorityLevel: 4, position: 4, minWidth: 150}
         ]
 
         if (this.props.hasErrored) {

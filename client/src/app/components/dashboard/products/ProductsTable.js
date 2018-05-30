@@ -26,9 +26,8 @@ class ProductsTable extends Component {
         //     { id: 1, firstName: 'Paul', lastName: 'Darragh', }
         // ]
         const columns = [
-            { accessor: 'name', label: 'Name', priorityLevel: 1, position: 1, minWidth: 150, },
-            { accessor: 'product_url', label: 'Product url', priorityLevel: 2, position: 2, minWidth: 150, },
-
+            { accessor: '_id', label: 'id', priorityLevel: 1, position: 1, minWidth: 150},
+            { accessor: 'nombre', label: 'nombre', priorityLevel: 2, position: 2, minWidth: 150 }
         ]
 
         if (this.props.hasErrored) {
@@ -46,7 +45,6 @@ class ProductsTable extends Component {
                 </Segment>
             );
         } else if (products) {
-
             return (
                 <div>
                     <ReactCollapsingTable rows={products} columns={columns} showSearch showPagination rowSize={5} />

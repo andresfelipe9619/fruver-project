@@ -47,7 +47,7 @@ export function fetchProducts() {
             return response.json();
         }).then((response) => {
             dispatch(fetchProductRequest(false));
-            dispatch(fetchProductSuccess(response.products));
+            dispatch(fetchProductSuccess(response));
         }).catch((err) => {
             // dispatch(alertError(err));
             dispatch(fetchProductFailure(err));

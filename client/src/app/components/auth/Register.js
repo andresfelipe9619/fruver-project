@@ -96,7 +96,7 @@ export class Register extends Component {
                 placeholder="ej: Subwayej: Subway"
                 onChange={this.handleChange}
                 value={this.state.name} />
-                <label>Correo Electrónico</label>
+              <label>Correo Electrónico</label>
               <Form.Input
                 required
                 fluid
@@ -106,7 +106,7 @@ export class Register extends Component {
                 placeholder="ej: abc@mycorp.com"
                 onChange={this.handleChange}
                 value={this.state.email} />
-                <label>NIT</label>
+              <label>NIT</label>
               <Form.Input
                 required
                 fluid
@@ -134,10 +134,8 @@ export class Register extends Component {
         </Grid>
       )
     }
-
   }
 }
-
 const mapStateToProps = (state) => {
   return { message: state.registerReducer.registerLoaded, isLoading: state.registerReducer.registerLoading, hasErrored: state.registerReducer.registerErrored };
 };
@@ -147,7 +145,7 @@ const mapDispatchToProps = (dispatch) => {
     loadPage: () => {
       dispatch(loadRegister());
     },
-    requestRegister: ()=> {
+    requestRegister: () => {
       dispatch(register(user));
     },
     errorMessage: () => {

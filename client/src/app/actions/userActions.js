@@ -50,7 +50,7 @@ export function fetchUsers() {
             return response.json();
         }).then((response) => {
             dispatch(fetchUsersRequest(false));
-            dispatch(fetchUsersSuccess(response.customers));
+            dispatch(fetchUsersSuccess(response));
         }).catch((err) => {
             // dispatch(alertError(err));
             dispatch(fetchUsersFailure(err));

@@ -13,7 +13,7 @@ export function alertClear(bool) {
 }
 
 export function clearAlerts() {
-    console.log('Wth its going on!!!')
+    console.log('Wth is going on!!!')
     return dispatch => {
 
     }

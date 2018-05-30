@@ -9,13 +9,7 @@ import {
 } from './constants/ActionTypes';
 import {Redirect} from 'react-router-dom';
 
-import {
-    alertError,
-    alertSuccess,
-    alertClear,
-    clearAlerts
-} from './alertActions';
-
+import {alertError, alertSuccess, alertClear, clearAlerts} from './alertActions';
 
 function logoutRequest(user) {
     return {type: LOGOUT_REQUEST, user};
@@ -65,7 +59,7 @@ export function login(user) {
                 dispatch(loginSuccess(user));
             }
         }).catch((err) => {
-            dispatch(alertError(err));            
+            dispatch(alertError(err));
             dispatch(loginFailure(err));
         });
     };

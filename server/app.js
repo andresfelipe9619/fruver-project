@@ -119,7 +119,7 @@ app.use((error, req, res, next) => {
 });
 
 
-var db
+/*var db
 
 MongoClient.connect('mongodb://admin:123@ds149844.mlab.com:49844/fruver', (err, client) => {
   if (err) return console.log(err)
@@ -134,6 +134,6 @@ app.post('/registro', (req, res) => {
       console.log('saved to database')
       res.redirect('/login')
     })
-  })
+  })*/
 
 module.exports = app;

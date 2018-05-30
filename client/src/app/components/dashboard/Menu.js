@@ -54,7 +54,7 @@ export class MenuDashboard extends Component {
                                 Productos
                             </Header.Content>
                         </Header>
-                        <Label>51</Label>
+                        <Label><script></script></Label>
                     </Menu.Item>
 
                     <Menu.Item

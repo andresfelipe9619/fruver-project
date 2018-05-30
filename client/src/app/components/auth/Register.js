@@ -1,7 +1,8 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {Button, Checkbox, Form, Grid} from "semantic-ui-react";
-import {loadRegister} from '../../actions/registerActions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Button, Checkbox, Form, Grid } from "semantic-ui-react";
+import { loadRegister, register } from '../../actions/registerActions';
+
 import {
   Header,
   Message,
@@ -13,8 +14,9 @@ export class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: ""
+      name: "",
+      email: "",
+      nit: ""
     };
 
     this.handleChange = this
@@ -33,15 +35,16 @@ export class Register extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const {username, password} = this.state;
+    const { name, email, nit } = this.state;
     const user = {
-      username,
-      password
+      name,
+      email,
+      nit
     };
 
     this
       .props
-      .requestLogin(user);
+      .requestRegister(user);
   }
 
   render() {
@@ -51,9 +54,9 @@ export class Register extends Component {
       return (
         <Segment
           style={{
-          marginTop: "7em",
-          height: "20em"
-        }}>
+            marginTop: "7em",
+            height: "20em"
+          }}>
           <Dimmer inverted active>
             <Loader size="big">Loading</Loader>
           </Dimmer>
@@ -63,9 +66,9 @@ export class Register extends Component {
       return (
         <Segment
           style={{
-          marginTop: "7em",
-          height: "20em"
-        }}>
+            marginTop: "7em",
+            height: "20em"
+          }}>
           <Dimmer inverted active>
             <Loader size="big">Loading</Loader>
           </Dimmer>
@@ -76,36 +79,54 @@ export class Register extends Component {
         <Grid
           textAlign="center"
           style={{
-          height: "100%"
-        }}
+            height: "100%"
+          }}
           verticalAlign="middle">
           <Grid.Column style={{
             maxWidth: 600
           }}>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Field id="nombre">
-                <label>Nombre</label>
-                <input placeholder="ej: Subway"/>
-                <Form.Field id="email"></Form.Field>
-                <label>
-                  Correo Electrónico
-                </label>
-                <input placeholder="ej: abc@mycorp.com"/>
-                <Form.Field id="nit"></Form.Field>
+              <label>Nombre</label>
+              <Form.Input
+                required
+                fluid
+                icon="user"
+                iconPosition="left"
+                name="name"
+                placeholder="ej: Subwayej: Subway"
+                onChange={this.handleChange}
+                value={this.state.name} />
+                <label>Correo Electrónico</label>
+              <Form.Input
+                required
+                fluid
+                icon="user"
+                iconPosition="left"
+                name="email"
+                placeholder="ej: abc@mycorp.com"
+                onChange={this.handleChange}
+                value={this.state.email} />
                 <label>NIT</label>
-                <input placeholder="NIT"/>
-              </Form.Field>
+              <Form.Input
+                required
+                fluid
+                icon="user"
+                iconPosition="left"
+                name="nit"
+                placeholder="NIT"
+                onChange={this.handleChange}
+                value={this.state.nit} />
               <Form.Field>
                 <Checkbox
                   label="Estoy de acuerdo con los terminos y condiciones de servicio"
-                  checked/>
+                  checked />
               </Form.Field>
               <Button
                 id="submitRegForm"
                 type="submit"
                 style={{
-                backgroundColor: "#2eb050"
-              }}>
+                  backgroundColor: "#2eb050"
+                }}>
                 Submit
               </Button>
             </Form>
@@ -118,13 +139,16 @@ export class Register extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {message: state.registerReducer.registerLoaded, isLoading: state.registerReducer.registerLoading, hasErrored: state.registerReducer.registerErrored};
+  return { message: state.registerReducer.registerLoaded, isLoading: state.registerReducer.registerLoading, hasErrored: state.registerReducer.registerErrored };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     loadPage: () => {
       dispatch(loadRegister());
+    },
+    requestRegister: ()=> {
+      dispatch(register(user));
     },
     errorMessage: () => {
       dispatch()

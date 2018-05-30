@@ -33,21 +33,6 @@ export class Register extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const {Name, Email, Nit} = this.state;
-
-        let registerDocument = {
-            nombre: Name,
-            email: Email,
-            nit: Nit
-        }
-
-        $.ajax({
-            url: "https://api.mlab.com/api/1/databases/fruver/collections/cliente?apiKey=3ogwDefjJ" +
-                    "M8EZJUQr_uur8ZAHVFPBF0G",
-            data: JSON.stringify([registerDocument]),
-            type: "POST",
-            contentType: "application/json"
-        });
-
     }
 
     render() {

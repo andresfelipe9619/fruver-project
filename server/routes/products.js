@@ -5,8 +5,10 @@ var fetchUrl = require("fetch").fetchUrl;
 
 // const Product = require("../models/product");
 
+//Read products
 router.get("/", (req, res, next) => {
-    fetchUrl('https://api.predic8.de:443/shop/products/', (error, meta, body) => {
+    fetchUrl("https://api.mlab.com/api/1/databases/fruver/collections/producto?apiKey=3ogwDefjJ" +
+    "M8EZJUQr_uur8ZAHVFPBF0G", (error, meta, body) => {
         if(error){
               throw Error(error);
          }
@@ -14,6 +16,27 @@ router.get("/", (req, res, next) => {
     })
 })
 
+//Create products
+router.post("/", (req, res, next) => {
+    fetchUrl("https://api.mlab.com/api/1/databases/fruver/collections/producto?apiKey=3ogwDefjJ" +
+    "M8EZJUQr_uur8ZAHVFPBF0G", (error, meta, body) => {
+        if(error){
+              throw Error(error);
+         }
+        res.send(body.toString());
+    })
+})
+
+//Update, Delete or Replace
+router.put("/", (req, res, next) => {
+    fetchUrl("https://api.mlab.com/api/1/databases/fruver/collections/producto?apiKey=3ogwDefjJ" +
+    "M8EZJUQr_uur8ZAHVFPBF0G", (error, meta, body) => {
+        if(error){
+              throw Error(error);
+         }
+        res.send(body.toString());
+    })
+})
 //MOngoose route
 // router.get("/", (req, res, next) => {
 //   Product.find()

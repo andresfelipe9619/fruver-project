@@ -25,14 +25,17 @@
         "jquery-ajax": "^2.1.4",
         "mongodb": "^3.0.8",
         "mongoose": "^5.0.17",
+        "morgan": "^1.9.0",
         "nodemon": "^1.17.3",
         "popper": "^1.0.1",
         "popper.js": "^1.14.3",
-        "react": "^16.3.2",
+        "react": "^16.4.0",
         "react-dom": "^16.3.2",
+        "react-redux": "^5.0.7",
         "reactstrap": "^5.0.0-beta.3",
+        "redux": "^4.0.0",
         "sweetalert": "^2.1.0",
-        "webpack": "^4.9.1"
+        "webpack": "^4.10.1"
     },
     "devDependencies": {
         "eslint": "4.19.1",

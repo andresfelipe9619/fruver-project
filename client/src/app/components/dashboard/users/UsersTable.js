@@ -57,20 +57,20 @@ class UsersTable extends Component {
         } else return null;
     }
 }
-const mapStateToProps = state => {
-    return {
-        users: state.userReducer.fetchUsersSuccess,
-        hasErrored: state.userReducer.fetchUsersFailure,
-        isLoading: state.userReducer.fetchUsersRequest,
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        getUsers: () => {
-            dispatch(fetchUsers())
+    const mapStateToProps = state => {
+        return {
+            users: state.userReducer.fetchUsersSuccess,
+            hasErrored: state.userReducer.fetchUsersFailure,
+            isLoading: state.userReducer.fetchUsersRequest,
         }
     }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersTable);   
+    const mapDispatchToProps = dispatch => {
+        return {
+            getUsers: () => {
+                dispatch(fetchUsers())
+            }
+        }
+    }
+
+    export default connect(mapStateToProps, mapDispatchToProps)(UsersTable);   

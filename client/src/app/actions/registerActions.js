@@ -17,54 +17,6 @@ import {Redirect} from 'react-router-dom';
 import {alertError, alertSuccess, alertClear, clearAlerts} from './alertActions';
 
 
-function registerRequest(user) {
-    return {type: REGISTER_REQUEST, user};
-}
-
-function registerSuccess(user) {
-    return {type: REGISTER_SUCCESS, user};
-}
-
-function registerFailure(error) {
-    return {type: REGISTER_FAILURE, error};
-
-}
-
-
-export function register(user) {
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
-    };
-
-    return dispatch => {
-        dispatch(registerRequest(user));
-        fetch("https://api.mlab.com/api/1/databases/fruver/collections/cliente?apiKey=3ogwDefjJM8EZJUQr_uur8ZAHVFPBF0G", requestOptions).then(response => {
-            if (!response.ok) {
-                return Promise.reject(response.statusText);
-            }
-            dispatch(registerRequest({}));
-            return response.json();
-        }).then((user) => {
-            if (user.err) {
-                dispatch(alertError(user.err));
-            } else {
-                dispatch(registerSuccess(user));
-            }
-        }).catch((err) => {
-            dispatch(alertError(err));
-            dispatch(registerFailure(err));
-        });
-    };
-}
-
-
-
-
-
 function registerPageLoaded(message) {
     return { type: REGISTER_PAGE_LOADED, message };
 }

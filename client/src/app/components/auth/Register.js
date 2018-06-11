@@ -64,7 +64,7 @@ class Register extends Component {
           </Dimmer>
         </Segment>
       );
-    } else if (this.props.successMessage) {
+    } else if (this.props.registerSuccess) {
       return (<Redirect to="/ingreso" />)
     } else {
       return (
@@ -139,8 +139,9 @@ const mapStateToProps = (state) => {
     message: state.registerReducer.registerLoaded,
     isLoading: state.registerReducer.registerLoading,
     hasErrored: state.registerReducer.registerErrored,
-    errorMessage: state.alertReducer.errorMessage,
-    successMessage: state.alertReducer.successMessage
+
+    alertError: state.alertReducer.alertError,    
+    registerSuccess: state.registerReducer.registerSuccess
   };
 };
 

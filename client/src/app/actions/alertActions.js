@@ -15,6 +15,8 @@ export function alertClear(bool) {
 export function clearAlerts() {
     console.log('Wth is going on!!!')
     return dispatch => {
-
+        alertClear(true)
+        alertSuccess(null)
+        alertClear(null)
     }
 }

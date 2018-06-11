@@ -40,7 +40,7 @@ export class MenuDashboard extends Component {
                                 Usuarios
                             </Header.Content>
                         </Header>
-                        <Label color='teal'>1</Label>
+                        {/* <Label color='teal'>1</Label> */}
                     </Menu.Item>
 
                     <Menu.Item
@@ -68,7 +68,6 @@ export class MenuDashboard extends Component {
                                 Pedidos
                             </Header.Content>
                         </Header>
-                        <Label>1</Label>
 
                     </Menu.Item>
 
@@ -84,22 +83,8 @@ export class MenuDashboard extends Component {
                                 Facturas
                             </Header.Content>
                         </Header>
-                        <Label>15</Label>
                     </Menu.Item>
 
-                    <Menu.Item
-                        name='devoluciones'
-                        active={activeItem === 'devoluciones'   }
-                        onClick={this.handleItemClick}>
-
-                        <Header as='h4'>
-                            <Icon name='shipping' size='mini'/>
-                            <Header.Content>
-                                Devoluciones
-                            </Header.Content>
-                        </Header>
-                        <Label>4</Label>
-                    </Menu.Item>
                 </Menu>
             </div>
         );

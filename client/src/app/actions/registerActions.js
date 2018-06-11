@@ -7,11 +7,6 @@ import {
     REGISTER_FAILURE
 } from './constants/ActionTypes';
 
-import {
-    REGISTER_REQUEST,
-    REGISTER_FAILURE,
-    REGISTER_SUCCESS,
-} from './constants/ActionTypes';
 import {Redirect} from 'react-router-dom';
 
 import {alertError, alertSuccess, alertClear, clearAlerts} from './alertActions';
@@ -73,16 +68,18 @@ export function register(user) {
             if (!response.ok) {
                 return Promise.reject(response.statusText);
             }
-            dispatch(registerRequest({}));
+            dispatch(registerRequest(null));
             return response.json();
         }).then((user) => {
-            // if (user.err) {
-            //     dispatch(alertError(user.err));
-            // } else {
+            if (user.err) {
+                dispatch(alertError(user.err));
+            } else {
             dispatch(registerSuccess(user));
-            // }
+            dispatch(alertSuccess(user));
+
+            }
         }).catch((err) => {
-            // dispatch(alertError(err));            
+            dispatch(alertError(err));            
             dispatch(registerFailure(err));
         });
     };

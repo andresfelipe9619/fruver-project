@@ -6,7 +6,7 @@ import Order from './components/order/Order.js'
 import Dashboard from './components/dashboard/Dashboard.js';
 import Navbar from './components/header/Navbar.js';
 import {Footer} from './components/footer/Footer.js';
-import {Register} from './components/auth/Register.js';
+import Register from './components/auth/Register.js';
 import Contact from './components/contact/Contact.js';
 import {Route, withRouter, Switch} from 'react-router-dom';
 import PrivateRoute from './components/auth/PrivateRoute';

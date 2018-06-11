@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Checkbox, Form, Grid } from "semantic-ui-react";
 import { loadRegister, register } from '../../actions/registerActions';
-
+import { Redirect, Link } from 'react-router-dom';
+import AlertMsg from "./AlertMsg";
 import {
   Header,
   Message,
@@ -10,13 +11,14 @@ import {
   Loader,
   Dimmer
 } from "semantic-ui-react";
-export class Register extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      email: "",
-      nit: ""
+      isValid: false,
+      nit: "",
+      nombre: "",
+      email: ""
     };
 
     this.handleChange = this
@@ -35,11 +37,11 @@ export class Register extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { name, email, nit } = this.state;
+    const { nombre, email, nit } = this.state;
     const user = {
-      name,
-      email,
-      nit
+      nit,
+      nombre,
+      email
     };
 
     this
@@ -62,18 +64,8 @@ export class Register extends Component {
           </Dimmer>
         </Segment>
       );
-    } else if (this.props.isLoading) {
-      return (
-        <Segment
-          style={{
-            marginTop: "7em",
-            height: "20em"
-          }}>
-          <Dimmer inverted active>
-            <Loader size="big">Loading</Loader>
-          </Dimmer>
-        </Segment>
-      )
+    } else if (this.props.successMessage) {
+      return (<Redirect to="/ingreso" />)
     } else {
       return (
         <Grid
@@ -85,6 +77,8 @@ export class Register extends Component {
           <Grid.Column style={{
             maxWidth: 600
           }}>
+            {this.props.alertError ? <AlertMsg type='error' msg={this.props.alertError} /> : null}
+
             <Form onSubmit={this.handleSubmit}>
               <label>Nombre</label>
               <Form.Input
@@ -92,28 +86,32 @@ export class Register extends Component {
                 fluid
                 icon="user"
                 iconPosition="left"
-                name="name"
-                placeholder="ej: Subwayej: Subway"
+                name="nombre"
+                placeholder="ej: Subway"
                 onChange={this.handleChange}
-                value={this.state.name} />
+                error={this.state.nombre.length < 1 ? true : false}
+                value={this.state.nombre} />
               <label>Correo Electrónico</label>
               <Form.Input
                 required
                 fluid
                 icon="user"
-                iconPosition="left"
+                type='email'
                 name="email"
-                placeholder="ej: abc@mycorp.com"
+                iconPosition="left"
+                placeholder="ej: micorreo@micorp.com"
                 onChange={this.handleChange}
-                value={this.state.email} />
+                value={this.state.email}
+                error={this.state.email.length < 1 ? true : false} />
               <label>NIT</label>
               <Form.Input
                 required
                 fluid
                 icon="user"
                 iconPosition="left"
+                type='number'
                 name="nit"
-                placeholder="NIT"
+                placeholder="ej: 1234343311"
                 onChange={this.handleChange}
                 value={this.state.nit} />
               <Form.Field>
@@ -137,23 +135,24 @@ export class Register extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  return { message: state.registerReducer.registerLoaded, isLoading: state.registerReducer.registerLoading, hasErrored: state.registerReducer.registerErrored };
+  return {
+    message: state.registerReducer.registerLoaded,
+    isLoading: state.registerReducer.registerLoading,
+    hasErrored: state.registerReducer.registerErrored,
+    errorMessage: state.alertReducer.errorMessage,
+    successMessage: state.alertReducer.successMessage
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     loadPage: () => {
-      dispatch(loadRegister());
+      dispatch(loadRegister())
     },
-    requestRegister: () => {
-      dispatch(register(user));
+    requestRegister: (user) => {
+      dispatch(register(user))
     },
-    errorMessage: () => {
-      dispatch()
-    },
-    successMessage: () => {
-      dispatch()
-    }
-  };
+
+  }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

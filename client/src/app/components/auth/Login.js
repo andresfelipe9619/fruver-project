@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import {
   Button,
   Form,
@@ -10,10 +10,9 @@ import {
   Loader,
   Dimmer
 } from "semantic-ui-react";
-import {login} from "../../actions/authActions";
-import {loadLogin} from "../../actions/loginActions";
-import swal from 'sweetalert';
-import {Redirect, Link} from 'react-router-dom';
+import { login } from "../../actions/authActions";
+import { loadLogin } from "../../actions/loginActions";
+import { Redirect, Link } from 'react-router-dom';
 import AlertMsg from "./AlertMsg";
 
 
@@ -39,9 +38,20 @@ class Login extends Component {
     });
   }
 
+
+  validation(field) {
+    let msg = '';
+    if (field.username) {
+
+    }
+    if (field.password) {
+
+    }
+
+  }
   handleSubmit(e) {
     e.preventDefault();
-    const {username, password} = this.state;
+    const { username, password } = this.state;
     const user = {
       username,
       password
@@ -63,33 +73,33 @@ class Login extends Component {
       return (
         <Segment
           style={{
-          marginTop: "7em",
-          height: "20em"
-        }}>
+            marginTop: "7em",
+            height: "20em"
+          }}>
           <Dimmer inverted active>
             <Loader size="big">Loading</Loader>
           </Dimmer>
         </Segment>
       );
-    }else if(this.props.hasSuccessed){
-      return(<Redirect to="/dashboard"/>)
-    } else{
+    } else if (this.props.hasSuccessed) {
+      return (<Redirect to="/dashboard" />)
+    } else {
       return (
         <div>
 
           <Grid
             textAlign="center"
             style={{
-            height: "100%"
-          }}
+              height: "100%"
+            }}
             verticalAlign="middle">
             <Grid.Column style={{
               maxWidth: 450
             }}>
-            {this.props.alertError?<AlertMsg type='error'/> :null}
+              {this.props.alertError ? <AlertMsg type='error' msg={this.props.alertError} /> : null}
               <Header as="h2" color="teal" textAlign="center">
                 Inicia Sesión con tu cuenta
-              </Header> 
+              </Header>
               <Form size="large" onSubmit={this.handleSubmit}>
                 <Segment stacked>
                   <Form.Input
@@ -100,7 +110,8 @@ class Login extends Component {
                     name="username"
                     placeholder="Nombre de usuario"
                     onChange={this.handleChange}
-                    value={this.state.username}/>
+                    value={this.state.username}
+                    error={this.state.username.length < 1 ? 1 : 0} />
                   <Form.Input
                     required
                     fluid
@@ -110,7 +121,8 @@ class Login extends Component {
                     placeholder="Contraseña"
                     type="password"
                     onChange={this.handleChange}
-                    value={this.state.password}/>
+                    value={this.state.password}
+                    error={this.state.password.length < 1 ? 1 : 0} />
 
                   <Button color="teal" type="submit" fluid size="large">
                     Iniciar Sesión
@@ -118,7 +130,7 @@ class Login extends Component {
                 </Segment>
               </Form>
               <Message>
-                No tienes cuenta? 
+                No tienes cuenta?
                 <Link to="/registro"> Crear Cuenta </Link>
               </Message>
               <Message>
@@ -155,4 +167,5 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

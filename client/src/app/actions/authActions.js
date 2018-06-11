@@ -50,7 +50,7 @@ export function login(user) {
             if (!response.ok) {
                 return Promise.reject(response.statusText);
             }
-            dispatch(loginRequest({}));
+            dispatch(loginRequest(null));
             return response.json();
         }).then((user) => {
             if (user.err) {

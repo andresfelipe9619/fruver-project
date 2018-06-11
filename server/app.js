@@ -88,7 +88,7 @@ app.post('/authenticate', (req, res) => {
     if (result) {
         res.status(200).json(result);
     } else {
-        res.status(401).json({ err: "User doesnt exist" });
+        res.json({ err: ['Nombre de usuario o contraseña incorrectos', 'Revisa los datos ingresados', 'Verifica que no esté activa la tecla MAYUS'] });
     }
 
 });

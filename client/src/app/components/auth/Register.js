@@ -91,7 +91,7 @@ class Register extends Component {
                 name="nombre"
                 placeholder="ej: Subway"
                 onChange={this.handleChange}
-                error={this.state.nombre.length < 1 ? true : false}
+                // error={this.state.nombre.length < 1 ? true : false}
                 value={this.state.nombre} />
               <label>Correo Electrónico</label>
               <Form.Input
@@ -104,7 +104,8 @@ class Register extends Component {
                 placeholder="ej: micorreo@micorp.com"
                 onChange={this.handleChange}
                 value={this.state.email}
-                error={this.state.email.length < 1 ? true : false} />
+                // error={this.state.email.length < 1 ? true : false} 
+                />
               <label>NIT</label>
               <Form.Input
                 required

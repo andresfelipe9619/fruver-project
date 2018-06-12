@@ -2,19 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadOrder } from "../../actions/orderActions";
 import { Grid, Header, Segment, Dimmer, Loader, Button, Icon } from "semantic-ui-react";
-import { Route, Switch} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import DataTable from './../dashboard/DataTable';
 import { fetchProducts, deleteProduct, createProduct, editProduct } from '../../actions/productActions';
 class Order extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
-            order:[],
+            order: [],
 
         }
     }
 
-    clickedAddProduct = ( product ) => {
+    clickedAddProduct = (product) => {
         // this.props.addProductToOrder( product );
         this.setState({
             order: [...this.state.order, product]
@@ -30,10 +30,9 @@ class Order extends Component {
         const { match, path, products } = this.props;
         const callbacks = { acciones: this.clickedAddProduct }
 
-        const ActionsComponent = (event) => {
+        const ActionsComponent = ({ CustomFunction, row }) => {
             // const clickedEdit = () => editProduct({ imageURL: row[accessor] });
-            console.log(event)
-            const handleclickAddProduct = () => event.CustomFunction( products );
+            const handleclickAddProduct = () => CustomFunction(row);
 
             return (
                 <Button.Group icon>
@@ -68,17 +67,22 @@ class Order extends Component {
         } else if (products) {
             return (
                 <Grid>
-                    <Grid.Column width={4}>
-                    <Header>Realiza Tu Pedido</Header>
+                    <Grid.Row>
+                        <Grid.Column width={4}>
+                            <Header as='h1'>Realiza Tu Pedido</Header>
+                        </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                        <Grid.Column width={8}>
+                            <Header as='h3'>Productos</Header>
+                            <DataTable data={products} component={ActionsComponent} callbacks={callbacks}></DataTable>
+                        </Grid.Column>
+                        <Grid.Column width={8}>
+                        <Header as='h3'>Mi Pedido</Header>
+                        {(this.state.order.length > 0 ? <DataTable data={this.state.order}></DataTable> : null)}
                     </Grid.Column>
-                    <Grid.Column width={12}>
-                    <Header>Productos</Header>
-                        <DataTable data={products} component={ActionsComponent} callbacks={callbacks}></DataTable>
-                    </Grid.Column>
-                    <Grid.Column width={12}>
-                    <Header>Mi Pedido</Header>
-                    {(this.state.order.length>0?<DataTable data={this.state.order}></DataTable>:null)}
-                    </Grid.Column>
+                    </Grid.Row>
+
                 </Grid>
             );
         } else return null;

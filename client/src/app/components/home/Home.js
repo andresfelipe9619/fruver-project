@@ -41,6 +41,8 @@ class Home extends Component {
                         }}>
                         <Grid.Row >
                             <Grid.Column width={5}>
+                            <Segment>
+
                                 <Header as='h1' textAlign="center">
                                     MISION
                                     </Header>
@@ -49,8 +51,11 @@ class Home extends Component {
                                     productos de fruver de excelente calidad a los mejores precios y con la
                                         amabilidad y puntualidad que nos caracteriza.</p >
 
+                            </Segment>
                             </Grid.Column>
+
                             <Grid.Column width={5}>
+                            <Segment>
                                 <Header as='h1' textAlign="center">
                                     VISION
                                     </Header>
@@ -61,8 +66,11 @@ class Home extends Component {
                                     agregado crecer en imagen.
                                     </p >
 
+                            </Segment>
                             </Grid.Column>
                             <Grid.Column width={5}>
+                            <Segment>
+
                                 <Header as='h1' textAlign="center">
                                     HISTORIA
                                     </Header>
@@ -77,6 +85,7 @@ class Home extends Component {
                                     restaurantes.
                                     </p >
 
+                            </Segment>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>

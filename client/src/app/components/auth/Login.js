@@ -111,7 +111,9 @@ class Login extends Component {
                     placeholder="Nombre de usuario"
                     onChange={this.handleChange}
                     value={this.state.username}
-                    error={this.state.username.length < 1 ? 1 : 0} />
+                    autoFocus
+                    // error={this.state.username.length < 1 ? 1 : 0} 
+                    />
                   <Form.Input
                     required
                     fluid
@@ -122,7 +124,8 @@ class Login extends Component {
                     type="password"
                     onChange={this.handleChange}
                     value={this.state.password}
-                    error={this.state.password.length < 1 ? 1 : 0} />
+                    // error={this.state.password.length < 1 ? 1 : 0}
+                     />
 
                   <Button color="teal" type="submit" fluid size="large">
                     Iniciar Sesión

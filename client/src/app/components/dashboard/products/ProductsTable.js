@@ -1,34 +1,51 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Checkbox, Button, Icon, Header, Segment, Dimmer, Loader } from 'semantic-ui-react';
-import ReactCollapsingTable from 'react-collapsing-table'
-import { fetchProducts } from '../../../actions/productActions';
+import { fetchProducts, deleteProduct, createProduct, editProduct } from '../../../actions/productActions';
+import DataTable from './../DataTable';
 
 class ProductsTable extends Component {
+    constructor(props){
+        super(props)
+
+        this.clickedDelete = this.clickedDelete.bind(this);
+    }
 
     componentDidMount() {
         this.props.getProducts();
         console.log('Table mounted');
     }
     componentDidUpdate(prevProps) {
-        // if(prevProps.myProps !== this.props.myProp) {
-
-        // }
-
         console.log('prev', prevProps)
     }
 
-
+    clickedDelete = ({ id }) => {
+        this.props.deleteProduct({ id });
+    }
 
     render() {
         const products = this.props.products;
-        // const rows = [
-        //     { id: 1, firstName: 'Paul', lastName: 'Darragh', }
-        // ]
-        const columns = [
-            { accessor: '_id', label: 'id', priorityLevel: 1, position: 1, minWidth: 150},
-            { accessor: 'nombre', label: 'nombre', priorityLevel: 2, position: 2, minWidth: 150 }
-        ]
+        const callbacks = { acciones: this.clickedDelete }
+
+        const ActionsComponent = ({row, CustomFunction}) => {
+            // const clickedEdit = () => editProduct({ imageURL: row[accessor] });
+            const handleclickedDelete = () => CustomFunction( {id: row['_id']} );
+
+            return (
+                <Button.Group icon>
+                    {/* <Button>
+                        <Icon name='play' />
+                    </Button>
+                    <Button>
+                        <Icon name='edit' />
+                    </Button> */}
+                    <Button onClick={handleclickedDelete} >
+                        <Icon name='trash' />
+                    </Button>
+                </Button.Group>
+            )
+        }
+
 
         if (this.props.hasErrored) {
             return <h1>Error</h1>;
@@ -47,7 +64,7 @@ class ProductsTable extends Component {
         } else if (products) {
             return (
                 <div>
-                    <ReactCollapsingTable rows={products} columns={columns} showSearch showPagination rowSize={5} />
+                    <DataTable data={products} component={ActionsComponent} callbacks={callbacks}></DataTable>
                 </div>
             );
         } else { return <div>So... You pass too much in here?</div> }
@@ -65,8 +82,18 @@ const mapDispatchToProps = dispatch => {
     return {
         getProducts: () => {
             dispatch(fetchProducts())
+        },
+        deleteProduct: (id) => {
+            dispatch(deleteProduct(id))
         }
+        // editProduct: (id) => {
+        //     dispatch(editProductRequest(id))
+        // },
+        // createProduct: (product) => {
+        //     dispatch(createProductRequest())
+        // }
     }
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsTable);   

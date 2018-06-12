@@ -18,7 +18,8 @@ class Register extends Component {
       isValid: false,
       nit: "",
       nombre: "",
-      email: ""
+      email: "",
+      cc: ""
     };
 
     this.handleChange = this
@@ -37,11 +38,12 @@ class Register extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { nombre, email, nit } = this.state;
+    const { nombre, email, nit, cc } = this.state;
     const user = {
       nit,
       nombre,
-      email
+      email,
+      cc
     };
 
     this
@@ -109,11 +111,22 @@ class Register extends Component {
                 fluid
                 icon="user"
                 iconPosition="left"
-                type='number'
                 name="nit"
                 placeholder="ej: 1234343311"
                 onChange={this.handleChange}
                 value={this.state.nit} />
+              <label>Ubicacion</label>
+              <Form.Input
+                required
+                fluid
+                icon="map"
+                iconPosition="left"
+                name="cc"
+                placeholder="ej: Kr 49b #44-67"
+                onChange={this.handleChange}
+                value={this.state.cc} />
+
+
               <Form.Field>
                 <Checkbox
                   label="Estoy de acuerdo con los terminos y condiciones de servicio"
@@ -140,7 +153,7 @@ const mapStateToProps = (state) => {
     isLoading: state.registerReducer.registerLoading,
     hasErrored: state.registerReducer.registerErrored,
 
-    alertError: state.alertReducer.alertError,    
+    alertError: state.alertReducer.alertError,
     registerSuccess: state.registerReducer.registerSuccess
   };
 };

@@ -7,7 +7,6 @@ import {
     REGISTER_FAILURE
 } from './constants/ActionTypes';
 
-import {Redirect} from 'react-router-dom';
 
 import {alertError, alertSuccess, alertClear, clearAlerts} from './alertActions';
 
@@ -76,7 +75,6 @@ export function register(user) {
             } else {
             dispatch(registerSuccess(user));
             dispatch(alertSuccess(user));
-
             }
         }).catch((err) => {
             dispatch(alertError(err));            

@@ -18,6 +18,16 @@ router.get("/", (req, res, next) => {
 
 //Create products
 router.post("/", (req, res, next) => {
+    const requestOptions = {
+        'headers': {
+            'Content-Type': 'application/json'
+        },
+        'method': 'POST',
+        'payload': JSON.stringify(req.body)
+
+    }
+
+
     fetchUrl("https://api.mlab.com/api/1/databases/fruver/collections/producto?apiKey=3ogwDefjJ" +
     "M8EZJUQr_uur8ZAHVFPBF0G", (error, meta, body) => {
         if(error){
@@ -29,6 +39,15 @@ router.post("/", (req, res, next) => {
 
 //Update, Delete or Replace
 router.put("/", (req, res, next) => {
+    const requestOptions = {
+        'headers': {
+            'Content-Type': 'application/json'
+        },
+        'method': 'PUT',
+        'payload': JSON.stringify(req.body)
+
+    }
+
     fetchUrl("https://api.mlab.com/api/1/databases/fruver/collections/producto?apiKey=3ogwDefjJ" +
     "M8EZJUQr_uur8ZAHVFPBF0G", (error, meta, body) => {
         if(error){
@@ -37,105 +56,25 @@ router.put("/", (req, res, next) => {
         res.send(body.toString());
     })
 })
-//MOngoose route
-// router.get("/", (req, res, next) => {
-//   Product.find()
-//     .exec()
-//     .then(docs => {
-//       console.log(docs);
-//         if (docs.length >= 0) {
-//       res.status(200).json(docs);
-//         } else {
-//             res.status(404).json({
-//                 message: 'No entries found'
-//             });
-//         }
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json({
-//         error: err
-//       });
-//     });
-// });
 
-// router.post("/", (req, res, next) => {
-//   const product = new Product({
-//     _id: new mongoose.Types.ObjectId(),
-//     name: req.body.name,
-//     price: req.body.price
-//   });
-//   product
-//     .save()
-//     .then(result => {
-//       console.log(result);
-//       res.status(201).json({
-//         message: "Handling POST requests to /products",
-//         createdProduct: result
-//       });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json({
-//         error: err
-//       });
-//     });
-// });
+router.delete("/", (req, res, next) => {
+    const requestOptions = {
+        'headers': {
+            'Content-Type': 'application/json'
+        },
+        'method': 'DELETE',
+        'payload': req.body.id.id.toString()
+    }
+    console.log('DELETE', req.body)
 
-//Moongoose route
-// router.get("/:productId", (req, res, next) => {
-//   const id = req.params.productId;
-//   Product.findById(id)
-//     .exec()
-//     .then(doc => {
-//       console.log("From database", doc);
-//       if (doc) {
-//         res.status(200).json(doc);
-//       } else {
-//         res
-//           .status(404)
-//           .json({ message: "No valid entry found for provided ID" });
-//       }
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json({ error: err });
-//     });
-// });
+    fetchUrl(`https://api.mlab.com/api/1/databases/fruver/collections/producto/?apiKey=3ogwDefjJ` +
+    "M8EZJUQr_uur8ZAHVFPBF0G",requestOptions, (error, meta, body) => {
+        if(error){
+              throw Error(error);
+         }
+    console.log('DELETE response cody', body.toString())
 
-// router.patch("/:productId", (req, res, next) => {
-//   const id = req.params.productId;
-//   const updateOps = {};
-//   for (const ops of req.body) {
-//     updateOps[ops.propName] = ops.value;
-//   }
-//   Product.update({ _id: id }, { $set: updateOps })
-//     .exec()
-//     .then(result => {
-//       console.log(result);
-//       res.status(200).json(result);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json({
-//         error: err
-//       });
-//     });
-// });
-
-// router.delete("/:productId", (req, res, next) => {
-//   const id = req.params.productId;
-//   Product.remove({ _id: id })
-//     .exec()
-//     .then(result => {
-//       res.status(200).json(result);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json({
-//         error: err
-//       });
-//     });
-// });
-
+        res.send(body.toString());
+    })
+})
 module.exports = router;

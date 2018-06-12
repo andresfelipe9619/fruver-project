@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Checkbox, Button, Icon, Header, Segment, Dimmer, Loader } from 'semantic-ui-react';
 import ReactCollapsingTable from 'react-collapsing-table'
 import { fetchUsers } from '../../../actions/userActions';
+import DataTable from './../DataTable';
 
 class UsersTable extends Component {
 
@@ -11,10 +12,6 @@ class UsersTable extends Component {
         console.log('Table mounted');
     }
     componentDidUpdate(prevProps) {
-        // if(prevProps.myProps !== this.props.myProp) {
-
-        // }
-
         console.log('prev', prevProps)
     }
 
@@ -25,12 +22,7 @@ class UsersTable extends Component {
         // const rows = [
         //     { id: 1, firstName: 'Paul', lastName: 'Darragh', }
         // ]
-        const columns = [
-            { accessor: 'nit', label: 'nit', priorityLevel: 1, position: 1, minWidth: 150, },
-            { accessor: 'nombre', label: 'nombre', priorityLevel: 2, position: 2, minWidth: 150, },
-            { accessor: 'email', label: 'email', priorityLevel: 3, position: 3, minWidth: 150, },
-            { accessor: 'cc', label: 'ubicacion', priorityLevel: 4, position: 4, minWidth: 150}
-        ]
+
 
         if (this.props.hasErrored) {
             return <h1>Error</h1>;
@@ -51,7 +43,7 @@ class UsersTable extends Component {
 
             return (
                 <div>
-                    <ReactCollapsingTable rows={users} columns={columns} showSearch showPagination rowSize={5}/>
+                    <DataTable data={users}></DataTable>
                 </div>
             );
         } else return null;

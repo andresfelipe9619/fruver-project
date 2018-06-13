@@ -14,6 +14,18 @@ class Order extends Component {
         }
     }
 
+    clickedDeleteProduct = (product) => {
+        // this.props.addProductToOrder( product );
+        let arr = [...this.state.order]
+        var index = arr.indexOf(product)
+        arr.splice(index, 1);
+        this.setState({
+            order: arr
+        })
+    }
+
+    
+    
     clickedAddProduct = (product) => {
         // this.props.addProductToOrder( product );
         this.setState({
@@ -29,7 +41,26 @@ class Order extends Component {
     render() {
         const { match, path, products } = this.props;
         const callbacks = { acciones: this.clickedAddProduct }
+        const callbacks2 = { acciones: this.clickedDeleteProduct }
 
+        const ActionsComponent2 = ({ CustomFunction, row }) => {
+            // const clickedEdit = () => editProduct({ imageURL: row[accessor] });
+            const handleclickAddProduct = () => CustomFunction(row);
+
+            return (
+                <Button.Group icon>
+                    {/* <Button>
+                        <Icon name='play' />
+                    </Button>
+                    <Button>
+                        <Icon name='edit' />
+                    </Button> */}
+                    <Button onClick={handleclickAddProduct} >
+                        <Icon name='delete' />
+                    </Button>
+                </Button.Group>
+            )
+        }
         const ActionsComponent = ({ CustomFunction, row }) => {
             // const clickedEdit = () => editProduct({ imageURL: row[accessor] });
             const handleclickAddProduct = () => CustomFunction(row);
@@ -67,7 +98,7 @@ class Order extends Component {
         } else if (products) {
             return (
                 <Grid>
-                    <Grid.Row>
+                    <Grid.Row> 
                         <Grid.Column width={4}>
                             <Header as='h1'>Realiza Tu Pedido</Header>
                         </Grid.Column>
@@ -79,7 +110,7 @@ class Order extends Component {
                         </Grid.Column>
                         <Grid.Column width={8}>
                         <Header as='h3'>Mi Pedido</Header>
-                        {(this.state.order.length > 0 ? <DataTable data={this.state.order}></DataTable> : null)}
+                        {(this.state.order.length > 0 ? <DataTable component={ActionsComponent2} callbacks={callbacks2} data={this.state.order}></DataTable> : null)}
                     </Grid.Column>
                     </Grid.Row>
 

@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Checkbox, Button, Icon, Header, Segment, Dimmer, Loader } from 'semantic-ui-react';
+import { Checkbox, Button, Icon, Header, Segment, Dimmer, Loader, Modal } from 'semantic-ui-react';
 import { fetchProducts, deleteProduct, createProduct, editProduct } from '../../../actions/productActions';
 import DataTable from './../DataTable';
 
 class ProductsTable extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
 
         this.clickedDelete = this.clickedDelete.bind(this);
+
     }
+
 
     componentDidMount() {
         this.props.getProducts();
@@ -27,21 +29,22 @@ class ProductsTable extends Component {
         const products = this.props.products;
         const callbacks = { acciones: this.clickedDelete }
 
-        const ActionsComponent = ({row, CustomFunction}) => {
-            // const clickedEdit = () => editProduct({ imageURL: row[accessor] });
-            const handleclickedDelete = () => CustomFunction( {id: row['_id']} );
 
+        const ActionsComponent = ({ row, CustomFunction }) => {
+            // const clickedEdit = () => editProduct({ imageURL: row[accessor] });
+            const handleclickedDelete = () => CustomFunction({ id: row['_id'] });
             return (
                 <Button.Group icon>
-                    {/* <Button>
-                        <Icon name='play' />
+                    <Button>
+                        <Icon name='eye' />
                     </Button>
                     <Button>
                         <Icon name='edit' />
-                    </Button> */}
-                    <Button onClick={handleclickedDelete} >
+                    </Button>
+                    <Button  >
                         <Icon name='trash' />
                     </Button>
+
                 </Button.Group>
             )
         }
@@ -62,9 +65,11 @@ class ProductsTable extends Component {
                 </Segment>
             );
         } else if (products) {
+
             return (
                 <div>
                     <DataTable data={products} component={ActionsComponent} callbacks={callbacks}></DataTable>
+
                 </div>
             );
         } else { return <div>So... You pass too much in here?</div> }

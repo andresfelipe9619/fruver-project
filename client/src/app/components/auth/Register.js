@@ -24,7 +24,8 @@ class Register extends Component {
           nombre: { valid: true, msg: 'El nombre de usuario es obligatorio' },
           email: { valid: true, msg: 'El correo debe ser valido' },
           cc: { valid: true, msg: 'La ubicacion debe tener la ubicacion validad del local o establecimiento' },
-          pwd: { valid: true, msg: 'La Contrasena debe tener mas de 7 caracteres y una mayuscula' },
+          pwd: { valid: true, msg: 'La Contrasena debe tener mas de 7 caracteres, almenos una mayuscula y un minuscula' },
+          pwdr: { valid: true, msg: 'Las Contrasenas deben coincidir' },
         }
       },
       nit: "",
@@ -47,13 +48,13 @@ class Register extends Component {
 
     if ([e.target.name] == 'nit') {
       let patron = /^[0-9\b]+$/
-      if ([e.target.value] == '' || (patron.test([e.target.value]) && [e.target.value].toString().length > 5 )) {
+      if ([e.target.value] == '' || (patron.test([e.target.value]) && ([e.target.value].toString().length > 6 && [e.target.value].toString().length < 10 ))) {
         this.setState({
           [e.target.name]: [e.target.value],
           errors: {inputs:{ ...this.state.errors.inputs,  nit: {  ...this.state.errors.inputs.nit, valid: true } } }
         });
       }
-      else if (patron.test([e.target.value]) && [e.target.value].toString().length < 6) {
+      else if (patron.test([e.target.value]) && [e.target.value].toString().length < 9) {
         this.setState({
           [e.target.name]: [e.target.value],
           errors: {inputs:{ ...this.state.errors.inputs,  nit: {  ...this.state.errors.inputs.nit, valid: false } } }
@@ -70,16 +71,38 @@ class Register extends Component {
           [e.target.name]: [e.target.value],
           errors: {inputs:{ ...this.state.errors.inputs,  email: {  ...this.state.errors.inputs.email, valid: true } } }
         });
-
-      } else {
+      }
+      } else if ([e.target.name] == 'pwd') {
+        let patron = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+  
+        if ([e.target.value] == '' || patron.test([e.target.value])) {
+          this.setState({
+            [e.target.name]: [e.target.value],
+            errors: {inputs:{ ...this.state.errors.inputs,  pwd: {  ...this.state.errors.inputs.pwd, valid: true } } }
+          });
+  
+        } else {
         this.setState({
           [e.target.name]: [e.target.value],
-          errors: {inputs:{ ...this.state.errors.inputs,  email: {  ...this.state.errors.inputs.email, valid: false } } }
+          errors: {inputs:{ ...this.state.errors.inputs,  pwd: {  ...this.state.errors.inputs.pwd, valid: false } } }
         })
-        // this.setState({mErrors:[...this.state.mErrors, this.state.errors.inputs.email.msg]})
-        // this.props.showErrorMessage(this.state.mErrors)
       }
+    } else if ([e.target.name] == 'pwdr') {
+      let patron = this.state.pwd;
+
+      if ([e.target.value] == '' || [e.target.value] == patron) {
+        this.setState({
+          [e.target.name]: [e.target.value],
+          errors: {inputs:{ ...this.state.errors.inputs,  pwdr: {  ...this.state.errors.inputs.pwdr, valid: true } } }
+        });
+
+      } else {
+      this.setState({
+        [e.target.name]: [e.target.value],
+        errors: {inputs:{ ...this.state.errors.inputs,  pwdr: {  ...this.state.errors.inputs.pwdr, valid: false } } }
+      })
     }
+  }
     else {
       this.setState({
         [e.target.name]: [e.target.value],
@@ -176,7 +199,9 @@ class Register extends Component {
                 name="pwd"
                 placeholder="superFruta12"
                 onChange={this.handleChange}
-                value={this.state.pwd} />
+                value={this.state.pwd}
+                error={!this.state.errors.inputs.pwd.valid}
+                 />
 
                 
               <Form.Input
@@ -219,10 +244,12 @@ class Register extends Component {
           </Grid.Column>
           <Grid.Column width={6}>
             {!this.state.errors.valid ? <AlertMsg type='warning' header={'Por favor llene todos los campos'} msg={`
-            nit debe ser valido y legal
+            Nit debe ser valido y legal
             `} /> : null}
-            {!this.state.errors.inputs.email.valid ? <AlertMsg header='Porfavor revisa que todos los campos esten correctos' type='error' msg={this.state.errors.inputs.email.msg} /> : null}
-            {!this.state.errors.inputs.nit.valid ? <AlertMsg header='Porfavor revisa que todos los campos esten correctos' type='error' msg={this.state.errors.inputs.nit.msg} /> : null}
+            {!this.state.errors.inputs.email.valid ? <AlertMsg header='Erro correo' type='error' msg={this.state.errors.inputs.email.msg} /> : null}
+            {!this.state.errors.inputs.nit.valid ? <AlertMsg header='Error Nit' type='error' msg={this.state.errors.inputs.nit.msg} /> : null}
+            {!this.state.errors.inputs.pwd.valid ? <AlertMsg header='Error Contrasena' type='error' msg={this.state.errors.inputs.pwd.msg} /> : null}
+            {!this.state.errors.inputs.pwdr.valid ? <AlertMsg header='Error Contrasena' type='error' msg={this.state.errors.inputs.pwdr.msg} /> : null}
           </Grid.Column>
         </Grid>
       )

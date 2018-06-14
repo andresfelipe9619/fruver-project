@@ -198,7 +198,7 @@ class Register extends Component {
                 icon="map"
                 iconPosition="left"
                 name="cc"
-                placeholder="ej: Kr 49b #44-67"
+                placeholder="ej: Cosmocentro"
                 onChange={this.handleChange}
                 value={this.state.cc} />
 
@@ -219,7 +219,7 @@ class Register extends Component {
           </Grid.Column>
           <Grid.Column width={6}>
             {!this.state.errors.valid ? <AlertMsg type='warning' header={'Por favor llene todos los campos'} msg={`
-            nit debe ser valido y legal
+            nit debe ser válido (omitir '-' y numero de validación)
             `} /> : null}
             {!this.state.errors.inputs.email.valid ? <AlertMsg header='Porfavor revisa que todos los campos esten correctos' type='error' msg={this.state.errors.inputs.email.msg} /> : null}
             {!this.state.errors.inputs.nit.valid ? <AlertMsg header='Porfavor revisa que todos los campos esten correctos' type='error' msg={this.state.errors.inputs.nit.msg} /> : null}

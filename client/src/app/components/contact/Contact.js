@@ -72,10 +72,6 @@ class Contact extends Component {
               <style>marginTop: auto</style>
               <h1 textalign="left">CONTACTO</h1>
             </div>
-            <h3>
-              Nos encontramos ubicados en la Calle #29-26 B/Santa Elena, de la
-              ciudad de Cali
-            </h3>
             <h2 textalign="left">MAPA</h2>
             <section>
               <MapWithAMarker
@@ -100,7 +96,7 @@ class Contact extends Component {
               </Grid.Column>
               <Grid.Column width={6}>
               <h2 textalign="left">DIRECCION</h2>
-              <h3>Calle #29-26 B/Santa Elena</h3>
+              <h3>Calle 19 # 29-26 B/Santa Elena</h3>
               </Grid.Column>
             </Grid.Row>
               <Grid.Row>

@@ -31,7 +31,8 @@ class Register extends Component {
       nombre: "",
       email: "",
       cc: "",
-      pwd: ""
+      pwd: "",
+      pwdr: ""
     };
 
     this.handleChange = this
@@ -57,7 +58,8 @@ class Register extends Component {
           [e.target.name]: [e.target.value],
           errors: {inputs:{ ...this.state.errors.inputs,  nit: {  ...this.state.errors.inputs.nit, valid: false } } }
         })
-        this.props.showErrorMessage(this.state.errors.inputs.nit.msg)
+        // this.setState({mErrors:[...this.state.mErrors, this.state.errors.inputs.nit.msg]})
+        // this.props.showErrorMessage(this.state.mErrors)
       }
     }
     else if ([e.target.name] == 'email') {
@@ -74,8 +76,8 @@ class Register extends Component {
           [e.target.name]: [e.target.value],
           errors: {inputs:{ ...this.state.errors.inputs,  email: {  ...this.state.errors.inputs.email, valid: false } } }
         })
-        this.props.showErrorMessage(this.state.errors.inputs.email.msg)
-
+        // this.setState({mErrors:[...this.state.mErrors, this.state.errors.inputs.email.msg]})
+        // this.props.showErrorMessage(this.state.mErrors)
       }
     }
     else {
@@ -176,6 +178,19 @@ class Register extends Component {
                 onChange={this.handleChange}
                 value={this.state.pwd} />
 
+                
+              <Form.Input
+                label='Repite Contrasena'
+                type='password'
+                required
+                fluid
+                icon="lock"
+                iconPosition="left"
+                name="pwdr"
+                placeholder="superFruta12"
+                onChange={this.handleChange}
+                value={this.state.pwdr} />
+
               <Form.Input
                 label='Ubicacion'
                 required
@@ -206,7 +221,8 @@ class Register extends Component {
             {!this.state.errors.valid ? <AlertMsg type='warning' header={'Por favor llene todos los campos'} msg={`
             nit debe ser valido y legal
             `} /> : null}
-            {this.props.alertError ? <AlertMsg type='error' msg={this.props.alertError} /> : null}
+            {!this.state.errors.inputs.email.valid ? <AlertMsg header='Porfavor revisa que todos los campos esten correctos' type='error' msg={this.state.errors.inputs.email.msg} /> : null}
+            {!this.state.errors.inputs.nit.valid ? <AlertMsg header='Porfavor revisa que todos los campos esten correctos' type='error' msg={this.state.errors.inputs.nit.msg} /> : null}
           </Grid.Column>
         </Grid>
       )

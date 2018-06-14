@@ -20,7 +20,8 @@ const PrivateRouteComponent = ({ component: Compo, isAdmin, ...rest }) =>
   );
 
 const mapEstateToProps = (state, ownProps) => {
-  return {isAdmin: state.authReducer.loginSuccess.admin}
+  const cached = localStorage.getItem('user');
+  return {isAdmin: state.authReducer.loginSuccess.admin || cached.admin}
 }
 const PrivateRoute = connect(mapEstateToProps, null)(PrivateRouteComponent);
 export default PrivateRoute;

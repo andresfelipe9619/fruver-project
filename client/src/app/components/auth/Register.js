@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Checkbox, Form, Grid } from "semantic-ui-react";
 import { loadRegister, register } from '../../actions/registerActions';
+import { alertError, alertSuccess } from '../../actions/alertActions';
 import { Redirect, Link } from 'react-router-dom';
 import AlertMsg from "./AlertMsg";
+
 import {
   Header,
   Message,
@@ -15,11 +17,21 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isValid: false,
+      errors: {
+        valid: false,
+        inputs: {
+          nit: { valid: true, msg: 'Ingrese un nit valido y legal de formato 991.xxx.xxx' },
+          nombre: { valid: true, msg: 'El nombre de usuario es obligatorio' },
+          email: { valid: true, msg: 'El correo debe ser valido' },
+          cc: { valid: true, msg: 'La ubicacion debe tener la ubicacion validad del local o establecimiento' },
+          pwd: { valid: true, msg: 'La Contrasena debe tener mas de 7 caracteres y una mayuscula' },
+        }
+      },
       nit: "",
       nombre: "",
       email: "",
-      cc: ""
+      cc: "",
+      pwd: ""
     };
 
     this.handleChange = this
@@ -31,24 +43,53 @@ class Register extends Component {
   }
 
   handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+
+    if ([e.target.name] == 'nit') {
+      let patron = /^[0-9\b]+$/
+      if ([e.target.value] == '' || (patron.test([e.target.value]) && [e.target.value].toString().length > 5 )) {
+        this.setState({
+          [e.target.name]: [e.target.value],
+          errors: {inputs:{ ...this.state.errors.inputs,  nit: {  ...this.state.errors.inputs.nit, valid: true } } }
+        });
+      }
+      else if (patron.test([e.target.value]) && [e.target.value].toString().length < 6) {
+        this.setState({
+          [e.target.name]: [e.target.value],
+          errors: {inputs:{ ...this.state.errors.inputs,  nit: {  ...this.state.errors.inputs.nit, valid: false } } }
+        })
+        this.props.showErrorMessage(this.state.errors.inputs.nit.msg)
+      }
+    }
+    else if ([e.target.name] == 'email') {
+      let patron = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+      if ([e.target.value] == '' || patron.test([e.target.value])) {
+        this.setState({
+          [e.target.name]: [e.target.value],
+          errors: {inputs:{ ...this.state.errors.inputs,  email: {  ...this.state.errors.inputs.email, valid: true } } }
+        });
+
+      } else {
+        this.setState({
+          [e.target.name]: [e.target.value],
+          errors: {inputs:{ ...this.state.errors.inputs,  email: {  ...this.state.errors.inputs.email, valid: false } } }
+        })
+        this.props.showErrorMessage(this.state.errors.inputs.email.msg)
+
+      }
+    }
+    else {
+      this.setState({
+        [e.target.name]: [e.target.value],
+      })
+    }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const { nombre, email, nit, cc } = this.state;
-    const user = {
-      nit,
-      nombre,
-      email,
-      cc
-    };
-
-    this
-      .props
-      .requestRegister(user);
+    const { nombre, email, nit, cc, pwd } = this.state;
+    const user = { nit, nombre, email, cc, pwd };
+    this.props.requestRegister(user);
   }
 
   render() {
@@ -71,19 +112,18 @@ class Register extends Component {
     } else {
       return (
         <Grid
-          textAlign="center"
+          // textAlign="center"
           style={{
             height: "100%"
           }}
           verticalAlign="middle">
-          <Grid.Column style={{
-            maxWidth: 600
-          }}>
-            {this.props.alertError ? <AlertMsg type='error' msg={this.props.alertError} /> : null}
-
+          <Grid.Column width={6}>
+            <Header as='h1'>Registro de Usuario</Header>
             <Form onSubmit={this.handleSubmit}>
-              <label>Nombre</label>
+
               <Form.Input
+                autoFocus
+                label='Nombre'
                 required
                 fluid
                 icon="user"
@@ -91,10 +131,11 @@ class Register extends Component {
                 name="nombre"
                 placeholder="ej: Subway"
                 onChange={this.handleChange}
-                // error={this.state.nombre.length < 1 ? true : false}
+                error={!this.state.errors.inputs.nombre.valid}
                 value={this.state.nombre} />
-              <label>Correo Electrónico</label>
+
               <Form.Input
+                label='Correo Electrónico'
                 required
                 fluid
                 icon="user"
@@ -104,10 +145,13 @@ class Register extends Component {
                 placeholder="ej: micorreo@micorp.com"
                 onChange={this.handleChange}
                 value={this.state.email}
-                // error={this.state.email.length < 1 ? true : false} 
-                />
-              <label>NIT</label>
+                error={!this.state.errors.inputs.email.valid}
+
+              />
+
               <Form.Input
+                label='NIT'
+                type='text'
                 required
                 fluid
                 icon="user"
@@ -115,9 +159,25 @@ class Register extends Component {
                 name="nit"
                 placeholder="ej: 1234343311"
                 onChange={this.handleChange}
-                value={this.state.nit} />
-              <label>Ubicacion</label>
+                value={this.state.nit}
+                error={!this.state.errors.inputs.nit.valid}
+              />
+
+
               <Form.Input
+                label='Contrasena'
+                type='password'
+                required
+                fluid
+                icon="lock"
+                iconPosition="left"
+                name="pwd"
+                placeholder="superFruta12"
+                onChange={this.handleChange}
+                value={this.state.pwd} />
+
+              <Form.Input
+                label='Ubicacion'
                 required
                 fluid
                 icon="map"
@@ -126,7 +186,6 @@ class Register extends Component {
                 placeholder="ej: Kr 49b #44-67"
                 onChange={this.handleChange}
                 value={this.state.cc} />
-
 
               <Form.Field>
                 <Checkbox
@@ -142,6 +201,12 @@ class Register extends Component {
                 Submit
               </Button>
             </Form>
+          </Grid.Column>
+          <Grid.Column width={6}>
+            {!this.state.errors.valid ? <AlertMsg type='warning' header={'Por favor llene todos los campos'} msg={`
+            nit debe ser valido y legal
+            `} /> : null}
+            {this.props.alertError ? <AlertMsg type='error' msg={this.props.alertError} /> : null}
           </Grid.Column>
         </Grid>
       )
@@ -167,7 +232,12 @@ const mapDispatchToProps = (dispatch) => {
     requestRegister: (user) => {
       dispatch(register(user))
     },
-
+    showErrorMessage: (msg) => {
+      dispatch(alertError(msg))
+    },
+    showSuccessMessage: (msg) => {
+      dispatch(alertSuccess(msg))
+    }
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

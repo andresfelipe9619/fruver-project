@@ -23,8 +23,8 @@ npm run start-react
 ## Built With
 
 * [Reactjs](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Nodejs](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-* [Express](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-* [MongoDB(https://www.mongodb.com) - Database used
+* [Nodejs](https://rometools.github.io/rome/) - 
+* [Express](https://rometools.github.io/rome/) - 
+* [MongoDB](https://www.mongodb.com) - Database used
 * [npm](https://maven.apache.org/) - Dependency Management
 

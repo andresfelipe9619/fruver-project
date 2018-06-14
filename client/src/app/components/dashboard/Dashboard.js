@@ -41,6 +41,12 @@ class Dashboard extends Component {
           <Switch>
             <Route exact path={match.url + "/usuarios"} component={UsersTable} key={'usersTable'}/>
             <Route exact path={match.url + "/productos"} component={ProductsTable} key={'productsTable'}/>
+            {/* <Route exact path={match.url} render={()=>(
+          <Segment>
+
+          </Segment>
+
+            )} key={'productsTable'}/> */}
             {/* <Route path={match.url + "/facturas"} component={InvoicesTable} /> */}
             {/* <Route
               path={match.url + "/devoluciones"}

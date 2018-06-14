@@ -82,6 +82,7 @@ class Login extends Component {
         </Segment>
       );
     } else if (this.props.hasSuccessed) {
+      localStorage.setItem('user', JSON.stringify(this.props.hasSuccessed));
       return (<Redirect to="/dashboard" />)
     } else {
       return (

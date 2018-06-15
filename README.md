@@ -1,36 +1,50 @@
 # Fruver Project
-An information system for a fruit store, that helps admins to manage their orders and invoices, and users to order easily
-
-### Prerequisites
+Sistema de informacion para ayudar a un fruver a recibir pedidos de forma mas eficiente y rapida
+## Prerrequisitos
 
 Nodejs and npm
 
-### Installing
-Go to your browser's extensions and install 
+## Instalacion
+Ve a las extensiones de tu navegador e instala
 [Redux DevTools](https://github.com/zalmoxisus/redux-devtools-extension)
 
-Clone this repository
+Clona este repositorio
 ```
 git clone git@github.com:andresfelipe9619/fruver-project.git
 ```
-In repository folder
+En la carpeta del repositorio
 ```
 npm run installation
 ```
-And 
+Y
 
 ```
 npm start
 ```
-For using the admin section, we provide you and user to test it
+Para usar la seccion de admin le proveemos un usuario de prueba
 
 username: sebastian pwd: sebas123 
 
-## Built With
+## Hecho Con
 
 * [Reactjs](https://reactjs.org/)
 * [Nodejs](https://nodejs.org/es/)
 * [Express](http://expressjs.com/es/)
 * [MongoDB](https://www.mongodb.com)
 * [npm](http://npmjs.com/) 
+
+## Requerimientos del sistema
+
+### Requerimientos de Hardware
+* Procesador de 1.0 Ghz
+* Memoria RAM de 2Gb
+
+### Requerimientos de Software
+* Nodejs y npm
+
+### Navegadores Soportados
+* Mozilla
+* Chrome
+* Safari
+
 

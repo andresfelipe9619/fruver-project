@@ -1,19 +1,27 @@
-const PrivateRoute = ({ component: Component, ...rest }) => (
+import React, {Component} from 'react';
+import {Route, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+
+const PrivateRouteComponent = ({ component: Compo, isAdmin, ...rest }) => 
+ (
     <Route
       {...rest}
-      render={props =>
-        authReducer.admin ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />
-        )
-      }
-    />
+      render={(props) => (isAdmin
+      ? (
+       <Compo {...props}/>
+      )
+      : (<Redirect
+        to={{
+        pathname: '/ingreso',
+        state: {
+          from: props.location
+        }
+      }}/>))}/>
   );
 
-  export default PrivateRoute;  
+const mapEstateToProps = (state, ownProps) => {
+  const cached = localStorage.getItem('user');
+  return {isAdmin: state.authReducer.loginSuccess.admin || cached.admin}
+}
+const PrivateRoute = connect(mapEstateToProps, null)(PrivateRouteComponent);
+export default PrivateRoute;

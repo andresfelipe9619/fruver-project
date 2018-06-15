@@ -23,10 +23,10 @@ export function loadDashboard() {
             }
 
             dispatch(dashboardPageLoading(false));
-            console.log('RESPONSE', response);
 
             return response;
         }).then((response) => response.json()).then((items) => dispatch(dashboardPageLoaded(items))).catch((err) => dispatch(dashboardPageErrored(err)));
     };
 }
+
 

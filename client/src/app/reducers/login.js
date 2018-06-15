@@ -18,7 +18,7 @@ function loginLoading(state = false, action) {
     }
 }
 
-function loginLoaded(state = "Waiting to load contact..." , action) {
+function loginLoaded(state = "Waiting to load login..." , action) {
     switch (action.type) {
         case LOGIN_PAGE_LOADED:
             return action.message;

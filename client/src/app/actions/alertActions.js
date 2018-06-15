@@ -1,30 +1,22 @@
-import {SUCCESS, ERROR, CLEAR} from './constants/ActionTypes';
+import {SUCCESS_ALERT, ERROR_ALERT, CLEAR_ALERT} from './constants/ActionTypes';
 
-
-function success(message) {
-    return {type: SUCCESS, message};
+export function alertSuccess(message) {
+    return {type: SUCCESS_ALERT, message};
 }
 
-function error(message) {
-    return {type: ERROR, message};
+export function alertError(message) {
+    return {type: ERROR_ALERT, message};
 }
 
-function clear() {
-    return {type: CLEAR};
+export function alertClear(bool) {
+    return {type: CLEAR_ALERT, bool};
 }
 
-export function displayMessage(message){
-    return (dispatch) => {
-        dispatch(success(message));
-
-        fetch('https://api.otreeba.com/v1/strains').then((response) => {
-            if (!response.ok) {
-                throw Error(response.statusText);
-            }
-
-            dispatch(homePageLoading(false));
-
-            return response;
-        }).then((response) => response.json()).then((items) => dispatch(homePageLoaded("Well done"))).catch(() => dispatch(homePageErrored(true)));
-    };
+export function clearAlerts() {
+    console.log('Wth is going on!!!')
+    return dispatch => {
+        alertClear(true)
+        alertSuccess(null)
+        alertClear(null)
+    }
 }

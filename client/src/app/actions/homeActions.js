@@ -13,6 +13,10 @@ function homePageErrored(bool) {
 
 }
 
+
+
+
+
 export function loadHome() {
     return (dispatch) => {
         dispatch(homePageLoading(true));
@@ -21,6 +25,7 @@ export function loadHome() {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
+            
 
             dispatch(homePageLoading(false));
 

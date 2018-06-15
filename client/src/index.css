@@ -3,3 +3,12 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+._id,column-_id{
+  width: 30px !important;
+}
+
+ui.selection.dropdown{
+  width: 30px !important;  
+}
+

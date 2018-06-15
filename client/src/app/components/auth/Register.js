@@ -68,31 +68,36 @@ class Register extends Component {
 
       if ([e.target.value] == '' || patron.test([e.target.value])) {
         this.setState({
-          [e.target.name]: [e.target.value],
+          [e.target.name]: e.target.value,
           errors: {inputs:{ ...this.state.errors.inputs,  email: {  ...this.state.errors.inputs.email, valid: true } } }
         });
+      }else {
+        this.setState({
+          [e.target.name]: e.target.value,
+          errors: {inputs:{ ...this.state.errors.inputs,  email: {  ...this.state.errors.inputs.email, valid: false } } }
+        })
       }
       } else if ([e.target.name] == 'pwd') {
         let patron = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   
         if ([e.target.value] == '' || patron.test([e.target.value])) {
           this.setState({
-            [e.target.name]: [e.target.value],
+            [e.target.name]: e.target.value,
             errors: {inputs:{ ...this.state.errors.inputs,  pwd: {  ...this.state.errors.inputs.pwd, valid: true } } }
           });
   
         } else {
         this.setState({
-          [e.target.name]: [e.target.value],
+          [e.target.name]: e.target.value,
           errors: {inputs:{ ...this.state.errors.inputs,  pwd: {  ...this.state.errors.inputs.pwd, valid: false } } }
         })
       }
     } else if ([e.target.name] == 'pwdr') {
-      let patron = this.state.pwd;
+      let patron = this.state.pwd[0];
 
-      if ([e.target.value] == '' || [e.target.value] == patron) {
+      if ([e.target.value] == '' || [e.target.value] === patron) {
         this.setState({
-          [e.target.name]: [e.target.value],
+          [e.target.name]: e.target.value,
           errors: {inputs:{ ...this.state.errors.inputs,  pwdr: {  ...this.state.errors.inputs.pwdr, valid: true } } }
         });
 
@@ -214,7 +219,9 @@ class Register extends Component {
                 name="pwdr"
                 placeholder="superFruta12"
                 onChange={this.handleChange}
-                value={this.state.pwdr} />
+                value={this.state.pwdr}
+                error={!this.state.errors.inputs.pwdr.valid}
+                 />
 
               <Form.Input
                 label='Ubicacion'
@@ -244,13 +251,9 @@ class Register extends Component {
           </Grid.Column>
           <Grid.Column width={6}>
             {!this.state.errors.valid ? <AlertMsg type='warning' header={'Por favor llene todos los campos'} msg={`
-<<<<<<< HEAD
-            Nit debe ser valido y legal
-=======
-            nit debe ser válido (omitir '-' y numero de validación)
->>>>>>> 1fa9e8003bd6f8669431c5ff702d303ffd7e5f4b
+            Nit debe ser válido (omitir '-' y numero de validación)
             `} /> : null}
-            {!this.state.errors.inputs.email.valid ? <AlertMsg header='Erro correo' type='error' msg={this.state.errors.inputs.email.msg} /> : null}
+            {!this.state.errors.inputs.email.valid ? <AlertMsg header='Error correo' type='error' msg={this.state.errors.inputs.email.msg} /> : null}
             {!this.state.errors.inputs.nit.valid ? <AlertMsg header='Error Nit' type='error' msg={this.state.errors.inputs.nit.msg} /> : null}
             {!this.state.errors.inputs.pwd.valid ? <AlertMsg header='Error Contrasena' type='error' msg={this.state.errors.inputs.pwd.msg} /> : null}
             {!this.state.errors.inputs.pwdr.valid ? <AlertMsg header='Error Contrasena' type='error' msg={this.state.errors.inputs.pwdr.msg} /> : null}

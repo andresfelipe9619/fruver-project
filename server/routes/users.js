@@ -13,6 +13,16 @@ router.get("/", (req, res, next) => {
         })
 })
 
+router.get("/id", (req, res, next) => {
+    fetchUrl("https://api.mlab.com/api/1/databases/fruver/collections/usuario?apiKey=3ogwDefjJ" +
+    `M8EZJUQr_uur8ZAHVFPBF0G&q={"_id":"${req.body.id}"}`, (error, meta, body) => {
+            if (error) {
+                throw Error(error);
+            }
+            res.send(body.toString());
+        })
+})
+
 //Create new user
 router.post("/", (req, res, next) => {
     const requestOptions = {

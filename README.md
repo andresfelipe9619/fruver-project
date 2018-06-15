@@ -1,4 +1,4 @@
-# fruver-project
+# Fruver Project
 An information system for a fruit store, that helps admins to manage their orders and invoices, and users to order easily
 
 ### Prerequisites
@@ -6,25 +6,31 @@ An information system for a fruit store, that helps admins to manage their order
 Nodejs and npm
 
 ### Installing
+Go to your browser's extensions and install 
+[Redux DevTools](https://github.com/zalmoxisus/redux-devtools-extension)
 
+Clone this repository
+```
+git clone git@github.com:andresfelipe9619/fruver-project.git
+```
 In repository folder
 ```
 npm run installation
 ```
-
 And 
 
 ```
 npm start
-cd client
-npm run start-react
 ```
+For using the admin section, we provide you and user to test it
+
+username: sebastian pwd: sebas123 
 
 ## Built With
 
-* [Reactjs](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Nodejs](https://rometools.github.io/rome/) - 
-* [Express](https://rometools.github.io/rome/) - 
-* [MongoDB](https://www.mongodb.com) - Database used
-* [npm](https://maven.apache.org/) - Dependency Management
+* [Reactjs](https://reactjs.org/)
+* [Nodejs](https://nodejs.org/es/)
+* [Express](http://expressjs.com/es/)
+* [MongoDB](https://www.mongodb.com)
+* [npm](http://npmjs.com/) 
 

@@ -16,7 +16,7 @@ class DataTable extends Component {
             const temp = Object.keys(element);
             for (let j = 0, jj = temp.length; j < jj; j++) {
                 if (accessors.indexOf(temp[j]) < 0) {
-                    if (temp[j] == '_id') {
+                    if (temp[j] === '_id') {
                         continue
                     } else {
                         console.log('EMP', temp[j])

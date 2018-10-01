@@ -13,13 +13,26 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="641000933497-f8eprvm0qv4ghnvrqfb2h4k7j66cvd8d.apps.googleusercontent.com">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fruver Alejandro</title>
 </head>
 
 <body>
+        <a href="#" onclick="signOut();">Sign out</a>
+        <script>
+            function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                    console.log('User signed out.');
+                });
+            }
+        </script>
     <div id="root"></div>
 </body>
 </html>

@@ -62,7 +62,7 @@ class Order extends Component {
 
             return (
                 <Button.Group icon>
-                    <Button onClick={handleclickDeleteProduct} >
+                    <Button onClick={handleclickDeleteProduct} style={{backgroundColor: "#f45f5f"}} >
                         <Icon name='delete' />
                     </Button>
                 </Button.Group>
@@ -80,7 +80,7 @@ class Order extends Component {
                     <Button>
                         <Icon name='edit' />
                     </Button> */}
-                    <Button onClick={handleclickAddProduct} >
+                    <Button onClick={handleclickAddProduct} style={{backgroundColor: "#30b6f4"}} >
                         <Icon name='add to cart' />
                     </Button>
                 </Button.Group>
@@ -136,7 +136,7 @@ class Order extends Component {
                             {(this.state.order.length > 0 ? (
                                 <div>
                                     <DataTable component={DeleteComponent} callbacks={callbacks2} data={this.state.order}></DataTable>
-                                    <Button primary>Realizar Pedido</Button>
+                                    <Button primary style={{backgroundColor:"#2eb050", marginTop: "2em"}}>Realizar Pedido</Button>
                                 </div>
                             ) : null)}
                         </Grid.Column>
